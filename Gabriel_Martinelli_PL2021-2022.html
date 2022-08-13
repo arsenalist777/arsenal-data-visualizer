@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Gabriel Martinelli 2021-2022</title>
+</head>
+
+<link rel="stylesheet" href="./css/dashboard.css">
+
+<body>
+    <div class="chart">
+        <div id="chart_goal_shot_creation"></div>
+        <a id="download_link" href="/" download="">download</a>
+    </div>
+
+    <div class="chart">
+        <div id="chart_expected"></div>
+        <a id="download_link" href="/" download="">download</a>
+    </div>
+
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="./js/const/const.js"></script>
+    <script src="./js/common/common.js"></script>
+    <script src="./js/download/spread-sheet-loader.js"></script>
+    <script src="./js/charts/candlestick.js"></script>
+    <script src="./js/data/goal-shot-creation.js"></script>
+    <script src="./js/data/expected.js"></script>
+    <script src="./js/player/player-template.js"></script>
+    <script src="./js/player/player-fw-template.js"></script>
+    <script src="./js/player/gabriel-martinelli.js"></script>
+    <script src="./js/charts/setting.js"></script>
+    <script>
+        (function () {
+            setAndExec(function () {
+                let martinelli = new GabrielMartinelli(true);
+            });
+        })();
+    </script>
+</body>
+
+</html>
