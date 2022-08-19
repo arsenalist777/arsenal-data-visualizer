@@ -72,10 +72,14 @@ class PlayerFwTemplate extends PlayerTemplate {
         const GOAL_SHOT_CREATION_TARGET_ID_CANDLESTICK = 'chart_goal_shot_creation_candlestick_';
         Object.keys(this.goalShotCreationData).map(key => {
 
-            // rendering each season
-            let targetId = GOAL_SHOT_CREATION_TARGET_ID_CANDLESTICK + key;
-            Common.addChartDiv(targetId);
-            new Candlestick(this.name + title + key).render(this.goalShotCreationData[key], targetId);
+            if (this.goalShotCreationData[key][0].length >= 5) {
+
+                // candlestick charts needs more than 5 match data
+                // rendering each season
+                let targetId = GOAL_SHOT_CREATION_TARGET_ID_CANDLESTICK + key;
+                Common.addChartDiv(targetId);
+                new Candlestick(this.name + title + key).render(this.goalShotCreationData[key], targetId);
+            }
         });
 
         // scatter
@@ -96,10 +100,14 @@ class PlayerFwTemplate extends PlayerTemplate {
         const EXPECTED_TARGET_ID_CANDLESTICK = 'chart_expected_candlestick_';
         Object.keys(this.expectedData).map(key => {
 
-            // rendering each season
-            let targetId = EXPECTED_TARGET_ID_CANDLESTICK + key;
-            Common.addChartDiv(targetId);
-            new Candlestick(this.name + title + key).render(this.expectedData[key], targetId);
+            if (this.expectedData[key][0].length >= 5) {
+
+                // candlestick charts needs more than 5 match data
+                // rendering each season
+                let targetId = EXPECTED_TARGET_ID_CANDLESTICK + key;
+                Common.addChartDiv(targetId);
+                new Candlestick(this.name + title + key).render(this.expectedData[key], targetId);
+            }
         });
 
         // scatter
