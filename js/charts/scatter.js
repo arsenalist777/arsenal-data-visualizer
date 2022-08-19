@@ -31,11 +31,11 @@ class Scatter {
     }
 
     /**
-         * reandering method
-         * @param {Object} rawData data from google spreadsheet (key: Array[Array])
-         * @param {String} targetId rendering target id attribute
-         * @returns Scatter instace
-         */
+     * reandering method
+     * @param {Object} rawData data from google spreadsheet (key: Array[Array])
+     * @param {String} targetId rendering target id attribute
+     * @returns Scatter instace
+     */
     render(rawData, targetId) {
         let chartDiv = document.getElementById(targetId);
         let chart = new google.visualization.ScatterChart(chartDiv);
