@@ -9,9 +9,9 @@ class ComparisonTemplate {
      */
     exec(players) {
         let sleep = setInterval(() => {
-            for (let index in players) {
-                this.checkLoadData(players[index]);
-            }
+            players.forEach(player => {
+                this.checkLoadData(player);
+            });
             this.renderComparisonCharts(players);
             clearInterval(sleep);
         }, 1000);

@@ -9,21 +9,12 @@
 <link rel="stylesheet" href="./css/dashboard.css">
 
 <body>
-    <div class="chart">
-        <div id="chart_goal_shot_creation"></div>
-        <a id="download_link" href="/" download="">download</a>
-    </div>
-
-    <div class="chart">
-        <div id="chart_expected"></div>
-        <a id="download_link" href="/" download="">download</a>
-    </div>
-
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="./js/const/const.js"></script>
     <script src="./js/common/common.js"></script>
     <script src="./js/download/spread-sheet-loader.js"></script>
     <script src="./js/charts/candlestick.js"></script>
+    <script src="./js/charts/scatter.js"></script>
     <script src="./js/data/goal-shot-creation.js"></script>
     <script src="./js/data/expected.js"></script>
     <script src="./js/player/player-template.js"></script>
@@ -33,7 +24,7 @@
     <script>
         (function () {
             setAndExec(function () {
-                let saka = new BukayoSaka(true);
+                let saka = new BukayoSaka(['2021-22', '2022-23'], true);
             });
         })();
     </script>

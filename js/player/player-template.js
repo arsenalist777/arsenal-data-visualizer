@@ -35,4 +35,14 @@ class PlayerTemplate {
     createExpectedChart() {
         // override if you render
     }
+
+    createUrls(spreadsheetId, seasons, sheetName) {
+        let urls = {};
+        for (let index in seasons) {
+            let season = seasons[index];
+            urls['seasons'] = seasons;
+            urls[season] = [spreadsheetId, "'" + season + ' ' + sheetName + "'"];
+        }
+        return urls;
+    }
 }

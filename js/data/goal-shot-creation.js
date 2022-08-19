@@ -14,8 +14,8 @@ class GoalShotCreation {
         let scaOpen = [];
         let gca = [];
         let gcaOpen = [];
-        for (let index in data) {
-            let matchData = data[index];
+        Object.keys(data).map(key => {
+            let matchData = data[key];
             if (matchData[constObj.MIN_COL] >= Const.FILTER_MIN) {
 
                 // appearance more than 30 minutes
@@ -26,7 +26,7 @@ class GoalShotCreation {
                 gca.push(matchData[constObj.GCA_COL] / conversionFulltime);
                 gcaOpen.push((Number(matchData[constObj.GCA_COL]) - Number(matchData[constObj.GCA_DEAD_COL])) / conversionFulltime);
             }
-        }
+        });
         Common.sortArray(sca).unshift('SCA');
         Common.sortArray(scaOpen).unshift('SCA_OPEN');
         Common.sortArray(gca).unshift('GCA');

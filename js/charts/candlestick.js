@@ -5,12 +5,15 @@ class Candlestick {
 
     /**
      * Constructor
+     * @param {String} title title
+     * @param {String} vAxisTitle vAxisTitle
      */
-    constructor() {
+    constructor(title, vAxisTitle) {
         this.option = {
             legend: 'none',
+            title: title,
             vAxis: {
-                title: ''
+                title: vAxisTitle
             }
         };
     }
@@ -19,10 +22,9 @@ class Candlestick {
      * reandering method
      * @param {Array[Array]} rawData data from google spreadsheet
      * @param {String} targetId rendering target id attribute
-     * @param {String} title hAxis title
-     * @returns 
+     * @returns Candlestick instance
      */
-    render(rawData, targetId, title) {
+    render(rawData, targetId) {
         let chartDiv = document.getElementById(targetId);
         let chart = new google.visualization.CandlestickChart(chartDiv);
 
@@ -35,9 +37,6 @@ class Candlestick {
         let data = this.processData(rawData);
 
         // rendering data and download link
-        if (title != null) {
-            this.option.vAxis.title = title;
-        }
         chart.draw(data, this.option);
         return this;
     }
@@ -49,22 +48,22 @@ class Candlestick {
      */
     processData(rawData) {
         let dataTable = [];
-        for (let index in rawData) {
+        rawData.forEach(elem => {
 
             // find 25% and 75% data index
-            let matchCount = rawData[index].length - 1;
+            let matchCount = elem.length - 1;
             let openingIndex = Math.floor(matchCount / 4);
             let closingIndex = Math.floor(3 * (matchCount / 4));
 
             // convert dataTable
             let newData = [];
-            newData.push(rawData[index][0]);
-            newData.push(rawData[index][1]);
-            newData.push(rawData[index][openingIndex]);
-            newData.push(rawData[index][closingIndex]);
-            newData.push(rawData[index][matchCount]);
+            newData.push(elem[0]);
+            newData.push(elem[1]);
+            newData.push(elem[openingIndex]);
+            newData.push(elem[closingIndex]);
+            newData.push(elem[matchCount]);
             dataTable.push(newData);
-        }
+        });
         return google.visualization.arrayToDataTable(dataTable, true);
     }
 }

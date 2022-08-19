@@ -1,7 +1,7 @@
 /**
- * Comparison for Fw
+ * Comparison for Fw using candlestick chart
  */
-class FwComparison extends ComparisonTemplate {
+class FwComparisonCandlestick extends ComparisonTemplate {
 
     /**
     * check finishing loading data
@@ -37,8 +37,7 @@ class FwComparison extends ComparisonTemplate {
         let npXgData = [];
         let xaData = [];
         let xgXaData = [];
-        for (let index in players) {
-            let player = players[index];
+        players.forEach(player => {
 
             // SCA
             let sca = player.goalShotCreationData[0];
@@ -79,7 +78,7 @@ class FwComparison extends ComparisonTemplate {
             let xgXa = player.expectedData[3];
             xgXa[0] = player.name;
             xgXaData.push(xgXa);
-        }
+        });
         new Candlestick().render(scaData, SCA_TARGET_ID, "SCA(Shot-Creating Actions)");
         new Candlestick().render(scaOpenData, SCA_OPEN_TARGET_ID, "SCA-OPEN");
         new Candlestick().render(gcaData, GCA_TARGET_ID, "GCA(Goal-Creating Actions)");
