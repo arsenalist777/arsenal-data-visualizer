@@ -12,6 +12,8 @@ class Candlestick {
         this.option = {
             legend: 'none',
             title: title,
+            width: 1000,
+            height: 800,
             vAxis: {
                 title: vAxisTitle
             }
