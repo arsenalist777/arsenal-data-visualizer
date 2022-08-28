@@ -10,14 +10,12 @@ class EddieNketiah extends PlayerFwTemplate {
 
     /**
      * Constructor
+     * @param {Array} seasons target seasons (format: 20XX-XX)
      * @param {Boolean} isRendering rendering chart flag 
      */
-    constructor(isRendering) {
+    constructor(seasons, isRendering) {
         const spreadsheetId = '1sl-C87Z0uxJv3u_floJbEAROBXK3lotALWsBPQoU-LA';
-        super({
-            goalShotCreation: [spreadsheetId, Const.GOAL_SHOT_CREATION.SHEET_NAME],
-            expected: [spreadsheetId, Const.EXPECTED.SHEET_NAME]
-        }, isRendering);
+        super(spreadsheetId, seasons, isRendering);
     }
 }
 

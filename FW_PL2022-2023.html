@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>FW 2021-2022</title>
+    <title>FW 2022-2023</title>
 </head>
 
 <link rel="stylesheet" href="./css/dashboard.css">
@@ -47,7 +47,7 @@
     <script src="./js/const/const.js"></script>
     <script src="./js/common/common.js"></script>
     <script src="./js/download/spread-sheet-loader.js"></script>
-    <script src="./js/charts/candlestick.js"></script>
+    <script src="./js/charts/scatter.js"></script>
     <script src="./js/data/goal-shot-creation.js"></script>
     <script src="./js/data/expected.js"></script>
     <script src="./js/player/player-template.js"></script>
@@ -58,12 +58,12 @@
     <script src="./js/player/eddie-nketiah.js"></script>
     <script src="./js/player/gabriel-jesus.js"></script>
     <script src="./js/comparison/comparison-template.js"></script>
-    <script src="./js/comparison/fw-comparison-candlestick.js"></script>
+    <script src="./js/comparison/fw-comparison-scatter.js"></script>
     <script src="./js/charts/setting.js"></script>
     <script>
         (function () {
             setAndExec(function () {
-                new FwComparisonCandlestick().exec([
+                new FwComparisonScatter().exec([
                     new BukayoSaka(),
                     new GabrielMartinelli(),
                     new EmileSmithRowe(),

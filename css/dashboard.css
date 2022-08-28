@@ -1,7 +1,10 @@
 .chart {
     text-align: center;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
 }
 
 .chart>* {
-    width: 100%
+    text-align: center;
 }
