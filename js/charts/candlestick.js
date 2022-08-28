@@ -13,7 +13,7 @@ class Candlestick {
             legend: 'none',
             title: title,
             width: 1000,
-            height: 800,
+            height: 500,
             vAxis: {
                 title: vAxisTitle
             }
