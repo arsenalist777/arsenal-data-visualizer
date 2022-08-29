@@ -9,47 +9,15 @@
 <link rel="stylesheet" href="./css/dashboard.css">
 
 <body>
-    <div class="chart">
-        <div id="chart_sca_comparison"></div>
-        <a id="download_link_sca" href="/" download="">download</a>
-    </div>
-    <div class="chart">
-        <div id="chart_sca_open_comparison"></div>
-        <a id="download_link_sca_open" href="/" download="">download</a>
-    </div>
-    <div class="chart">
-        <div id="chart_gca_comparison"></div>
-        <a id="download_link_gca" href="/" download="">download</a>
-    </div>
-    <div class="chart">
-        <div id="chart_gca_open_comparison"></div>
-        <a id="download_link_gca_open" href="/" download="">download</a>
-    </div>
-    <div class="chart">
-        <div id="chart_xg_comparison"></div>
-        <a id="download_link_xg" href="/" download="">download</a>
-    </div>
-    <div class="chart">
-        <div id="chart_npxg_comparison"></div>
-        <a id="download_link_npxg" href="/" download="">download</a>
-    </div>
-    <div class="chart">
-        <div id="chart_xa_comparison"></div>
-        <a id="download_link_xa" href="/" download="">download</a>
-    </div>
-    <div class="chart">
-        <div id="chart_xgxa_comparison"></div>
-        <a id="download_link_xgxa" href="/" download="">download</a>
-    </div>
-
-
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="./js/const/const.js"></script>
     <script src="./js/common/common.js"></script>
     <script src="./js/download/spread-sheet-loader.js"></script>
-    <script src="./js/charts/scatter.js"></script>
+    <script src="./js/charts/charts-utils.js"></script>
+    <script src="./js/charts/candlestick.js"></script>
     <script src="./js/data/goal-shot-creation.js"></script>
     <script src="./js/data/expected.js"></script>
+    <script src="./js/data/expected-diff.js"></script>
     <script src="./js/player/player-template.js"></script>
     <script src="./js/player/player-fw-template.js"></script>
     <script src="./js/player/bukayo-saka.js"></script>
@@ -58,17 +26,18 @@
     <script src="./js/player/eddie-nketiah.js"></script>
     <script src="./js/player/gabriel-jesus.js"></script>
     <script src="./js/comparison/comparison-template.js"></script>
-    <script src="./js/comparison/fw-comparison-scatter.js"></script>
+    <script src="./js/comparison/fw-comparison-candlestick.js"></script>
     <script src="./js/charts/setting.js"></script>
     <script>
         (function () {
+            let season = ['2022-23'];
             setAndExec(function () {
-                new FwComparisonScatter().exec([
-                    new BukayoSaka(),
-                    new GabrielMartinelli(),
-                    new EmileSmithRowe(),
-                    new EddieNketiah(),
-                    new GabrielJesus()
+                new FwComparisonCandlestick().exec([
+                    new BukayoSaka(season),
+                    new GabrielMartinelli(season),
+                    new EmileSmithRowe(season),
+                    new EddieNketiah(season),
+                    new GabrielJesus(season)
                 ]);
             });
         })();

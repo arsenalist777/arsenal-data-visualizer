@@ -1,19 +1,26 @@
 /**
- * Candlestick chart
+ * Area chart
  */
-class Candlestick {
+class Area {
 
     /**
      * Constructor
      * @param {String} title title
+     * @param {String} hAxisTitle hAxisTitle
      * @param {String} vAxisTitle vAxisTitle
      */
-    constructor(title, vAxisTitle) {
+    constructor(title, hAxisTitle, vAxisTitle) {
         this.option = {
-            legend: 'none',
             title: title,
             width: 1000,
             height: 500,
+            hAxis: {
+                title: hAxisTitle,
+                format: '#',
+                gridlines: {
+                    color: 'transparent'
+                }
+            },
             vAxis: {
                 title: vAxisTitle
             }
@@ -24,11 +31,11 @@ class Candlestick {
      * reandering method
      * @param {Array[Array]} rawData data from google spreadsheet
      * @param {String} targetId rendering target id attribute
-     * @returns Candlestick instance
+     * @returns Area instance
      */
     render(rawData, targetId) {
         let chartDiv = document.getElementById(targetId);
-        let chart = new google.visualization.CandlestickChart(chartDiv);
+        let chart = new google.visualization.AreaChart(chartDiv);
 
         // create download link
         ChartsUtils.createDownloadLink(chart, targetId);
@@ -48,22 +55,20 @@ class Candlestick {
      */
     processData(rawData) {
         let dataTable = [];
-        rawData.forEach(elem => {
-
-            // find 25% and 75% data index
-            let matchCount = elem.length - 1;
-            let openingIndex = Math.floor(matchCount / 4);
-            let closingIndex = Math.floor(3 * (matchCount / 4));
-
-            // convert dataTable
-            let newData = [];
-            newData.push(elem[0]);
-            newData.push(elem[1]);
-            newData.push(elem[openingIndex]);
-            newData.push(elem[closingIndex]);
-            newData.push(elem[matchCount]);
-            dataTable.push(newData);
-        });
-        return google.visualization.arrayToDataTable(dataTable, true);
+        let dataLength = rawData[0].length;
+        for (let i = 0; i < dataLength; i++) {
+            let dataSet = [];
+            if (i === 0) {
+                dataSet.push(this.option.hAxis.title);
+                dataSet.push(rawData[0][i]);
+                dataSet.push(rawData[1][i]);
+            } else {
+                dataSet.push(i);
+                dataSet.push(rawData[0][i]);
+                dataSet.push(rawData[1][i]);
+            }
+            dataTable.push(dataSet);
+        }
+        return google.visualization.arrayToDataTable(dataTable);
     }
 }

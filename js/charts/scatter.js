@@ -42,9 +42,7 @@ class Scatter {
         let chart = new google.visualization.ScatterChart(chartDiv);
 
         // create download link
-        google.visualization.events.addListener(chart, 'ready', function () {
-            document.getElementById(targetId).nextElementSibling.setAttribute("href", chart.getImageURI());
-        });
+        ChartsUtils.createDownloadLink(chart, targetId);
 
         // process for google chart
         let hAxisCount = this.editOption(rawData);
