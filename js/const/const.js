@@ -22,6 +22,8 @@
          */
         EXPECTED: {
             MIN_COL: 9,
+            GLS_COL: 10,
+            AST_COL: 11,
             XG_COL: 23,
             NPXG_COL: 24,
             XA_COL: 25,

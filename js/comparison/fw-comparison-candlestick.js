@@ -8,7 +8,7 @@ class FwComparisonCandlestick extends ComparisonTemplate {
     * @param {Object} player player object
     */
     checkLoadData(player) {
-        if (player.goalShotCreationData == null || player.expectedData == null) {
+        if (Object.keys(player.goalShotCreationData).length !== player.seasons.length || Object.keys(player.expectedData).length !== player.seasons.length) {
 
             // doesn't finish loading data
             return;
@@ -20,72 +20,91 @@ class FwComparisonCandlestick extends ComparisonTemplate {
      * @param {Array} players 
      */
     renderComparisonCharts(players) {
-        const SCA_TARGET_ID = 'chart_sca_comparison';
-        const SCA_OPEN_TARGET_ID = 'chart_sca_open_comparison';
-        const GCA_TARGET_ID = 'chart_gca_comparison';
-        const GCA_OPEN_TARGET_ID = 'chart_gca_open_comparison';
-        const XG_TARGET_ID = 'chart_xg_comparison';
-        const NPXG_TARGET_ID = 'chart_npxg_comparison';
-        const XA_TARGET_ID = 'chart_xa_comparison';
-        const XGXA_TARGET_ID = 'chart_xgxa_comparison';
+        let seasons = players[0].seasons;
+        seasons.forEach(season => {
 
-        let scaData = [];
-        let scaOpenData = [];
-        let gcaData = [];
-        let gcaOpenData = [];
-        let xgData = [];
-        let npXgData = [];
-        let xaData = [];
-        let xgXaData = [];
-        players.forEach(player => {
+            const SCA_TARGET_ID = 'chart_sca_comparison_' + season;
+            const SCA_OPEN_TARGET_ID = 'chart_sca_open_comparison_' + season;
+            const GCA_TARGET_ID = 'chart_gca_comparison_' + season;
+            const GCA_OPEN_TARGET_ID = 'chart_gca_open_comparison_' + season;
+            const XG_TARGET_ID = 'chart_xg_comparison_' + season;
+            const NPXG_TARGET_ID = 'chart_npxg_comparison_' + season;
+            const XA_TARGET_ID = 'chart_xa_comparison_' + season;
+            const XGXA_TARGET_ID = 'chart_xgxa_comparison_' + season;
 
-            // SCA
-            let sca = player.goalShotCreationData[0];
-            sca[0] = player.name;
-            scaData.push(sca);
+            // add div
+            Common.addChartDiv([
+                SCA_TARGET_ID,
+                SCA_OPEN_TARGET_ID,
+                GCA_TARGET_ID,
+                GCA_OPEN_TARGET_ID,
+                XG_TARGET_ID,
+                NPXG_TARGET_ID,
+                XA_TARGET_ID,
+                XGXA_TARGET_ID
+            ]);
 
-            // SCA OPEN
-            let scaOpen = player.goalShotCreationData[1];
-            scaOpen[0] = player.name;
-            scaOpenData.push(scaOpen);
+            let scaData = [];
+            let scaOpenData = [];
+            let gcaData = [];
+            let gcaOpenData = [];
+            let xgData = [];
+            let npXgData = [];
+            let xaData = [];
+            let xgXaData = [];
+            players.forEach(player => {
 
-            // GCA
-            let gca = player.goalShotCreationData[2];
-            gca[0] = player.name;
-            gcaData.push(gca);
+                // SCA
+                let sca = player.goalShotCreationData[season][0];
+                sca[0] = player.name;
+                scaData.push(sca);
 
-            // GCA OPEN
-            let gcaOpen = player.goalShotCreationData[3];
-            gcaOpen[0] = player.name;
-            gcaOpenData.push(gcaOpen);
+                // SCA OPEN
+                let scaOpen = player.goalShotCreationData[season][1];
+                scaOpen[0] = player.name;
+                scaOpenData.push(scaOpen);
 
-            // xG
-            let xg = player.expectedData[0];
-            xg[0] = player.name;
-            xgData.push(xg);
+                // GCA
+                let gca = player.goalShotCreationData[season][2];
+                gca[0] = player.name;
+                gcaData.push(gca);
 
-            // npxG
-            let npXg = player.expectedData[1];
-            npXg[0] = player.name;
-            npXgData.push(npXg);
+                // GCA OPEN
+                let gcaOpen = player.goalShotCreationData[season][3];
+                gcaOpen[0] = player.name;
+                gcaOpenData.push(gcaOpen);
 
-            // xA
-            let xa = player.expectedData[2];
-            xa[0] = player.name;
-            xaData.push(xa);
+                // xG
+                let xg = player.expectedData[season][0];
+                xg[0] = player.name;
+                xgData.push(xg);
 
-            // xG+xA
-            let xgXa = player.expectedData[3];
-            xgXa[0] = player.name;
-            xgXaData.push(xgXa);
+                // npxG
+                let npXg = player.expectedData[season][1];
+                npXg[0] = player.name;
+                npXgData.push(npXg);
+
+                // xA
+                let xa = player.expectedData[season][2];
+                xa[0] = player.name;
+                xaData.push(xa);
+
+                // xG+xA
+                let xgXa = player.expectedData[season][3];
+                xgXa[0] = player.name;
+                xgXaData.push(xgXa);
+            });
+
+            new Candlestick("SCA(Shot-Creating Actions) " + season).render(scaData, SCA_TARGET_ID);
+            new Candlestick("SCA-OPEN " + season).render(scaOpenData, SCA_OPEN_TARGET_ID);
+            new Candlestick("GCA(Goal-Creating Actions) " + season).render(gcaData, GCA_TARGET_ID);
+            new Candlestick("GCA-OPEN " + season).render(gcaOpenData, GCA_OPEN_TARGET_ID);
+            new Candlestick("xG " + season).render(xgData, XG_TARGET_ID);
+            new Candlestick("npxG " + season).render(npXgData, NPXG_TARGET_ID);
+            new Candlestick("xA " + season).render(xaData, XA_TARGET_ID);
+            new Candlestick("xG+xA " + season).render(xgXaData, XGXA_TARGET_ID);
+
         });
-        new Candlestick().render(scaData, SCA_TARGET_ID, "SCA(Shot-Creating Actions)");
-        new Candlestick().render(scaOpenData, SCA_OPEN_TARGET_ID, "SCA-OPEN");
-        new Candlestick().render(gcaData, GCA_TARGET_ID, "GCA(Goal-Creating Actions)");
-        new Candlestick().render(gcaOpenData, GCA_OPEN_TARGET_ID, "GCA-OPEN");
-        new Candlestick().render(xgData, XG_TARGET_ID, "xG");
-        new Candlestick().render(npXgData, NPXG_TARGET_ID, "npxG");
-        new Candlestick().render(xaData, XA_TARGET_ID, "xA");
-        new Candlestick().render(xgXaData, XGXA_TARGET_ID, "xG+xA");
+
     }
 }

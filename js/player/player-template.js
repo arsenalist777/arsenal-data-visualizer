@@ -11,6 +11,7 @@ class PlayerTemplate {
             this.checkLoadData();
             this.createGoalShotCreationChart();
             this.createExpectedChart();
+            this.createExpectedDiffChart();
             clearInterval(sleep);
         }, 1000);
     }
@@ -33,6 +34,13 @@ class PlayerTemplate {
      * create expected chart
      */
     createExpectedChart() {
+        // override if you render
+    }
+
+    /**
+     * create expected diff chart
+     */
+    createExpectedDiffChart() {
         // override if you render
     }
 

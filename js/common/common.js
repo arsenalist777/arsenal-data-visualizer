@@ -23,20 +23,22 @@ class Common {
 
     /**
      * add div for rendering
-     * @param {*} targetId target id attribute for chart
+     * @param {Array} targetIds target id attribute list for chart
      */
-    static addChartDiv(targetId) {
-        let chartAreaElem = document.createElement('div');
-        chartAreaElem.setAttribute('class', 'chart');
-        let renderAreaElem = document.createElement('div');
-        renderAreaElem.setAttribute('id', targetId);
-        let downloadAreaElem = document.createElement('a');
-        downloadAreaElem.setAttribute('href', '/');
-        downloadAreaElem.setAttribute('download', '');
-        downloadAreaElem.innerHTML = 'download';
-        chartAreaElem.appendChild(renderAreaElem);
-        chartAreaElem.appendChild(downloadAreaElem);
+    static addChartDiv(targetIds) {
         let body = document.getElementsByTagName('body');
-        body[0].appendChild(chartAreaElem);
+        targetIds.forEach(targetId => {
+            let chartAreaElem = document.createElement('div');
+            chartAreaElem.setAttribute('class', 'chart');
+            let renderAreaElem = document.createElement('div');
+            renderAreaElem.setAttribute('id', targetId);
+            let downloadAreaElem = document.createElement('a');
+            downloadAreaElem.setAttribute('href', '/');
+            downloadAreaElem.setAttribute('download', '');
+            downloadAreaElem.innerHTML = 'download';
+            chartAreaElem.appendChild(renderAreaElem);
+            chartAreaElem.appendChild(downloadAreaElem);
+            body[0].appendChild(chartAreaElem);
+        });
     }
 }

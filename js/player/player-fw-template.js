@@ -18,6 +18,7 @@ class PlayerFwTemplate extends PlayerTemplate {
         this.expectedUrls = super.createUrls(spreadsheetId, seasons, Const.EXPECTED.SHEET_NAME);
         this.goalShotCreationData = {};
         this.expectedData = {};
+        this.expectedDiffData = {};
         this.createFwTemplateData(isRendering);
     }
 
@@ -53,6 +54,7 @@ class PlayerFwTemplate extends PlayerTemplate {
             SpreadSheetLoader.load(urls, (response) => {
                 response.values.splice(0, 2);
                 this.expectedData[season] = Expected.processData(response.values);
+                this.expectedDiffData[season] = ExpectedDiff.processData(response.values);
             });
         });
 
@@ -77,7 +79,7 @@ class PlayerFwTemplate extends PlayerTemplate {
                 // candlestick charts needs more than 5 match data
                 // rendering each season
                 let targetId = GOAL_SHOT_CREATION_TARGET_ID_CANDLESTICK + key;
-                Common.addChartDiv(targetId);
+                Common.addChartDiv([targetId]);
                 new Candlestick(this.name + title + key).render(this.goalShotCreationData[key], targetId);
             }
         });
@@ -85,7 +87,7 @@ class PlayerFwTemplate extends PlayerTemplate {
         // scatter
         // rendering seasons
         const GOAL_SHOT_CREATION_TARGET_ID_SCATTER = 'chart_goal_shot_creation_scatter';
-        Common.addChartDiv(GOAL_SHOT_CREATION_TARGET_ID_SCATTER);
+        Common.addChartDiv([GOAL_SHOT_CREATION_TARGET_ID_SCATTER]);
         new Scatter(this.name + title + this.seasons.join(', ')).render(this.goalShotCreationData, GOAL_SHOT_CREATION_TARGET_ID_SCATTER);
     }
 
@@ -105,7 +107,7 @@ class PlayerFwTemplate extends PlayerTemplate {
                 // candlestick charts needs more than 5 match data
                 // rendering each season
                 let targetId = EXPECTED_TARGET_ID_CANDLESTICK + key;
-                Common.addChartDiv(targetId);
+                Common.addChartDiv([targetId]);
                 new Candlestick(this.name + title + key).render(this.expectedData[key], targetId);
             }
         });
@@ -113,8 +115,33 @@ class PlayerFwTemplate extends PlayerTemplate {
         // scatter
         // rendering seasons
         const EXPECTED_TARGET_ID_SCATTER = 'chart_expected_scatter';
-        Common.addChartDiv(EXPECTED_TARGET_ID_SCATTER);
+        Common.addChartDiv([EXPECTED_TARGET_ID_SCATTER]);
         new Scatter(this.name + title + this.seasons.join(', ')).render(this.expectedData, EXPECTED_TARGET_ID_SCATTER);
+    }
+
+    /**
+     * create expected diff chart(Override)
+     */
+    createExpectedDiffChart() {
+        let titleXg = ' xG Diff ';
+        let titleXa = ' xA Diff ';
+
+        // area
+        const XG_DIFF_TARGET_ID = 'chart_xg_diff_';
+        const XA_DIFF_TARGET_ID = 'chart_xa_diff_';
+        Object.keys(this.expectedDiffData).map(key => {
+            let targetIdXg = XG_DIFF_TARGET_ID + key;
+            let targetIdXa = XA_DIFF_TARGET_ID + key;
+            Common.addChartDiv([targetIdXg, targetIdXa]);
+            let xgData = [];
+            let xaData = [];
+            xgData.push(this.expectedDiffData[key][0]);
+            xgData.push(this.expectedDiffData[key][1]);
+            xaData.push(this.expectedDiffData[key][2]);
+            xaData.push(this.expectedDiffData[key][3]);
+            new Area(this.name + titleXg + key, 'Match').render(xgData, targetIdXg);
+            new Area(this.name + titleXa + key, 'Match').render(xaData, targetIdXa);
+        });
     }
 
 }
