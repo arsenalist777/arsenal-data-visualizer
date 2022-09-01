@@ -8,7 +8,9 @@ class PlayerTemplate {
      */
     createCharts() {
         let sleep = setInterval(() => {
-            this.checkLoadData();
+            if (!this.isLoadedData()) {
+                return;
+            }
             this.createGoalShotCreationChart();
             this.createExpectedChart();
             this.createExpectedDiffChart();
@@ -18,8 +20,9 @@ class PlayerTemplate {
 
     /**
      * check finishing loading data
+     * @returns check result(boolean)
      */
-    checkLoadData() {
+    isLoadedData() {
         // must override
     }
 

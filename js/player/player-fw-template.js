@@ -24,13 +24,15 @@ class PlayerFwTemplate extends PlayerTemplate {
 
     /**
     * check finishing loading data
+    * @returns check result
     */
-    checkLoadData() {
+    isLoadedData() {
         if (Object.keys(this.goalShotCreationData).length !== this.seasons.length || Object.keys(this.expectedData).length !== this.seasons.length) {
 
             // doesn't finish loading data
-            return;
+            return false;
         }
+        return true;
     }
 
     /**

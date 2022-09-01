@@ -9,9 +9,17 @@ class ComparisonTemplate {
      */
     exec(players) {
         let sleep = setInterval(() => {
-            players.forEach(player => {
-                this.checkLoadData(player);
-            });
+            let isLoaded = true;
+            let playerLength = players.length;
+            for (let i = 0; i < playerLength; i++) {
+                if (!this.isLoadedData(players[i])) {
+                    isLoaded = false;
+                    break;
+                }
+            }
+            if (!isLoaded) {
+                return;
+            }
             this.renderComparisonCharts(players);
             clearInterval(sleep);
         }, 1000);
@@ -20,8 +28,9 @@ class ComparisonTemplate {
     /**
      * check finishing loading data
      * @param {Object} player player object
+     * @returns check result(boolean)
      */
-    checkLoadData(player) {
+    isLoadedData(player) {
         // must override
     }
 
