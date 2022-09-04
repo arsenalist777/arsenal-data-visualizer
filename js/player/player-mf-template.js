@@ -1,7 +1,7 @@
 /**
- * FW Template
+ * MF Template
  */
-class PlayerFwTemplate extends PlayerTemplate {
+class PlayerMfTemplate extends PlayerTemplate {
 
     /**
      * Constructor
@@ -16,10 +16,12 @@ class PlayerFwTemplate extends PlayerTemplate {
         this.seasons = seasons;
         this.goalShotCreationUrls = super.createUrls(spreadsheetId, seasons, Const.GOAL_SHOT_CREATION.SHEET_NAME);
         this.expectedUrls = super.createUrls(spreadsheetId, seasons, Const.EXPECTED.SHEET_NAME);
+        this.passingUrls = super.createUrls(spreadsheetId, seasons, Const.PASSING.SHEET_NAME);
         this.goalShotCreationData = {};
         this.expectedData = {};
         this.expectedDiffData = {};
-        this.createFwTemplateData(isRendering);
+        this.passingData = {};
+        this.createMfTemplateData(isRendering);
     }
 
     /**
@@ -27,7 +29,7 @@ class PlayerFwTemplate extends PlayerTemplate {
     * @returns check result
     */
     isLoadedData() {
-        if (Object.keys(this.goalShotCreationData).length !== this.seasons.length || Object.keys(this.expectedData).length !== this.seasons.length || Object.keys(this.expectedDiffData).length !== this.seasons.length) {
+        if (Object.keys(this.goalShotCreationData).length !== this.seasons.length || Object.keys(this.expectedData).length !== this.seasons.length || Object.keys(this.expectedDiffData).length !== this.seasons.length || Object.keys(this.passingData).length !== this.seasons.length) {
 
             // doesn't finish loading data
             return false;
@@ -36,10 +38,10 @@ class PlayerFwTemplate extends PlayerTemplate {
     }
 
     /**
-     * create FW template data
+     * create MF template data
      * @param {*} isRendering rendering chart flag
      */
-    createFwTemplateData(isRendering) {
+    createMfTemplateData(isRendering) {
 
         // load spreadsheet goal and shot creation
         this.goalShotCreationUrls.seasons.forEach(season => {
@@ -57,6 +59,15 @@ class PlayerFwTemplate extends PlayerTemplate {
                 response.values.splice(0, 2);
                 this.expectedData[season] = Expected.processData(response.values);
                 this.expectedDiffData[season] = ExpectedDiff.processData(response.values);
+            });
+        });
+
+        // load spreadsheet passing
+        this.passingUrls.seasons.forEach(season => {
+            let urls = this.passingUrls[season];
+            SpreadSheetLoader.load(urls, (response) => {
+                response.values.splice(0, 2);
+                this.passingData[season] = Passing.processData(response.values);
             });
         });
 
@@ -143,6 +154,18 @@ class PlayerFwTemplate extends PlayerTemplate {
             xaData.push(this.expectedDiffData[key][3]);
             new Area(this.name + titleXg + key, 'Match').render(xgData, targetIdXg);
             new Area(this.name + titleXa + key, 'Match').render(xaData, targetIdXa);
+        });
+    }
+
+    createPassingChart() {
+        let title = ' Passing ';
+
+        // pie
+        const PASSING_TARGET_ID = 'chart_passing_';
+        Object.keys(this.passingData).map(key => {
+            let targetId = PASSING_TARGET_ID + key;
+            Common.addChartDiv([targetId]);
+            new Pie(this.name + title + key).render(this.passingData[key], targetId);
         });
     }
 
