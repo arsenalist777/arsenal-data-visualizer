@@ -29,6 +29,29 @@
             XA_COL: 25,
             SHEET_NAME: 'Summary'
         },
+
+        /**
+         * for passing
+         */
+        PASSING: {
+            SHORT_CMP_COL: 15,
+            SHORT_ATT_COL: 16,
+            MEDIUM_CMP_COL: 18,
+            MEDIUM_ATT_COL: 19,
+            LONG_CMP_COL: 21,
+            LONG_ATT_COL: 22,
+            SHEET_NAME: 'Passing'
+        },
+
+        POSSESSION: {
+            DEF_PEN_COL: 11,
+            DEF_3RD_COL: 12,
+            MID_3RD_COL: 13,
+            ATT_3RD_COL: 14,
+            ATT_PEN_COL: 15,
+            SHEET_NAME: 'Possession'
+        },
+
         FILTER_MIN: 30,
         FULLTIME_MIN: 90
     };

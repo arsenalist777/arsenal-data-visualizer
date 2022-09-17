@@ -6,13 +6,15 @@ class FwComparisonCandlestick extends ComparisonTemplate {
     /**
     * check finishing loading data
     * @param {Object} player player object
+    * @returns check result(boolean)
     */
-    checkLoadData(player) {
+    isLoadedData(player) {
         if (Object.keys(player.goalShotCreationData).length !== player.seasons.length || Object.keys(player.expectedData).length !== player.seasons.length) {
 
             // doesn't finish loading data
-            return;
+            return false;
         }
+        return true;
     }
 
     /**

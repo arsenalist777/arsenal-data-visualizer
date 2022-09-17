@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Martin Ødegaard PL</title>
+</head>
+
+<link rel="stylesheet" href="./css/dashboard.css">
+
+<body>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="./js/const/const.js"></script>
+    <script src="./js/common/common.js"></script>
+    <script src="./js/download/spread-sheet-loader.js"></script>
+    <script src="./js/charts/charts-utils.js"></script>
+    <script src="./js/charts/candlestick.js"></script>
+    <script src="./js/charts/scatter.js"></script>
+    <script src="./js/charts/area.js"></script>
+    <script src="./js/charts/pie.js"></script>
+    <script src="./js/data/goal-shot-creation.js"></script>
+    <script src="./js/data/expected.js"></script>
+    <script src="./js/data/expected-diff.js"></script>
+    <script src="./js/data/passing.js"></script>
+    <script src="./js/data/possession.js"></script>
+    <script src="./js/player/player-template.js"></script>
+    <script src="./js/player/player-mf-template.js"></script>
+    <script src="./js/player/martin-ødegaard.js"></script>
+    <script src="./js/charts/setting.js"></script>
+    <script>
+        (function () {
+            setAndExec(function () {
+                let Ødegaard = new MartinØdegaard(['2021-22', '2022-23'], true);
+            });
+        })();
+    </script>
+</body>
+
+</html>

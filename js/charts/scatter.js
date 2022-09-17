@@ -11,8 +11,8 @@ class Scatter {
     constructor(title, vAxisTitle) {
         this.option = {
             title: title,
-            width: 1000,
-            height: 800,
+            width: 800,
+            height: 400,
             hAxis: {
                 baseline: 0,
                 maxValue: 0,

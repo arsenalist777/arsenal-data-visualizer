@@ -8,18 +8,23 @@ class PlayerTemplate {
      */
     createCharts() {
         let sleep = setInterval(() => {
-            this.checkLoadData();
+            if (!this.isLoadedData()) {
+                return;
+            }
             this.createGoalShotCreationChart();
             this.createExpectedChart();
             this.createExpectedDiffChart();
+            this.createPassingChart();
+            this.createPossessionChart();
             clearInterval(sleep);
         }, 1000);
     }
 
     /**
      * check finishing loading data
+     * @returns check result(boolean)
      */
-    checkLoadData() {
+    isLoadedData() {
         // must override
     }
 
@@ -44,6 +49,28 @@ class PlayerTemplate {
         // override if you render
     }
 
+    /**
+     * create passing chart
+     */
+    createPassingChart() {
+        // override if you render
+    }
+
+    /**
+     * create possession chart
+     * /
+    createPossessionChart(){
+        // override if you render
+    }
+
+    /**
+     * create spread sheet urls
+     * 
+     * @param {String} spreadsheetId spreadsheet id
+     * @param {Array} seasons seasons
+     * @param {String} sheetName sheet name
+     * @returns 
+     */
     createUrls(spreadsheetId, seasons, sheetName) {
         let urls = {};
         for (let index in seasons) {
