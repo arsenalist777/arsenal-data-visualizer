@@ -6,7 +6,7 @@ class ExpectedDiff {
     /**
      * process google spreadsheet data
      * @param {Object} data  google spreadsheet data
-     * @returns two demension Array data(xG, npxG, xA, xG+xA)
+     * @returns two demension Array data(xG, actualGoal, xA, actualAssist)
      */
     static processData(data) {
         const constObj = Const.EXPECTED;

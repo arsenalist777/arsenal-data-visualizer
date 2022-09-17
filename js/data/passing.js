@@ -6,7 +6,7 @@ class Passing {
     /**
      * process google spreadsheet data
      * @param {Object} data  google spreadsheet data
-     * @returns two demension Array data(xG, npxG, xA, xG+xA)
+     * @returns Array data(Cmp, Att)
      */
     static processData(data) {
         const constObj = Const.PASSING;

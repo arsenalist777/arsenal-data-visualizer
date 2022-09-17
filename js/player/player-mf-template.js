@@ -17,10 +17,12 @@ class PlayerMfTemplate extends PlayerTemplate {
         this.goalShotCreationUrls = super.createUrls(spreadsheetId, seasons, Const.GOAL_SHOT_CREATION.SHEET_NAME);
         this.expectedUrls = super.createUrls(spreadsheetId, seasons, Const.EXPECTED.SHEET_NAME);
         this.passingUrls = super.createUrls(spreadsheetId, seasons, Const.PASSING.SHEET_NAME);
+        this.possessionUrls = super.createUrls(spreadsheetId, seasons, Const.POSSESSION.SHEET_NAME);
         this.goalShotCreationData = {};
         this.expectedData = {};
         this.expectedDiffData = {};
         this.passingData = {};
+        this.possessionData = {};
         this.createMfTemplateData(isRendering);
     }
 
@@ -29,7 +31,7 @@ class PlayerMfTemplate extends PlayerTemplate {
     * @returns check result
     */
     isLoadedData() {
-        if (Object.keys(this.goalShotCreationData).length !== this.seasons.length || Object.keys(this.expectedData).length !== this.seasons.length || Object.keys(this.expectedDiffData).length !== this.seasons.length || Object.keys(this.passingData).length !== this.seasons.length) {
+        if (Object.keys(this.goalShotCreationData).length !== this.seasons.length || Object.keys(this.expectedData).length !== this.seasons.length || Object.keys(this.expectedDiffData).length !== this.seasons.length || Object.keys(this.passingData).length !== this.seasons.length || Object.keys(this.possessionData).length !== this.seasons.length) {
 
             // doesn't finish loading data
             return false;
@@ -70,6 +72,18 @@ class PlayerMfTemplate extends PlayerTemplate {
                 this.passingData[season] = Passing.processData(response.values);
             });
         });
+
+        // load spreadsheet possession
+        this.possessionUrls.seasons.forEach(season => {
+            let urls = this.possessionUrls[season];
+            SpreadSheetLoader.load(urls, (response) => {
+                response.values.splice(0, 2);
+                this.possessionData[season] = Possession.processData(response.values);
+            });
+        });
+
+        // load spreadsheet possession
+        this.possessionData
 
         if (isRendering) {
             this.createCharts();
@@ -157,6 +171,9 @@ class PlayerMfTemplate extends PlayerTemplate {
         });
     }
 
+    /**
+     * create passing chart(Override)
+     */
     createPassingChart() {
         let title = ' Passing ';
 
@@ -166,6 +183,21 @@ class PlayerMfTemplate extends PlayerTemplate {
             let targetId = PASSING_TARGET_ID + key;
             Common.addChartDiv([targetId]);
             new Pie(this.name + title + key).render(this.passingData[key], targetId);
+        });
+    }
+
+    /**
+     * create possession chart(Override)
+     */
+    createPossessionChart() {
+        let title = ' Possession Touches ';
+
+        // pie
+        const POSSESSION_TARGET_ID = 'chart_possession_';
+        Object.keys(this.possessionData).map(key => {
+            let targetId = POSSESSION_TARGET_ID + key;
+            Common.addChartDiv([targetId]);
+            new Pie(this.name + title + key).render(this.possessionData[key], targetId);
         });
     }
 

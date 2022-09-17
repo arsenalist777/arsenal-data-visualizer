@@ -15,6 +15,7 @@ class PlayerTemplate {
             this.createExpectedChart();
             this.createExpectedDiffChart();
             this.createPassingChart();
+            this.createPossessionChart();
             clearInterval(sleep);
         }, 1000);
     }
@@ -52,6 +53,13 @@ class PlayerTemplate {
      * create passing chart
      */
     createPassingChart() {
+        // override if you render
+    }
+
+    /**
+     * create possession chart
+     * /
+    createPossessionChart(){
         // override if you render
     }
 

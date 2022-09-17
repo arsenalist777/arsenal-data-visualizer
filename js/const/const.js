@@ -43,6 +43,15 @@
             SHEET_NAME: 'Passing'
         },
 
+        POSSESSION: {
+            DEF_PEN_COL: 11,
+            DEF_3RD_COL: 12,
+            MID_3RD_COL: 13,
+            ATT_3RD_COL: 14,
+            ATT_PEN_COL: 15,
+            SHEET_NAME: 'Possession'
+        },
+
         FILTER_MIN: 30,
         FULLTIME_MIN: 90
     };

@@ -10,8 +10,9 @@ class Pie {
     constructor(title) {
         this.option = {
             title: title,
-            width: 1000,
-            height: 500,
+            width: 800,
+            height: 400,
+            fontSize: 10,
             sliceVisibilityThreshold: 0,
             pieSliceText: 'percentage'
         };
@@ -31,11 +32,15 @@ class Pie {
         ChartsUtils.createDownloadLink(chart, targetId);
 
         // process for google chart
-        let data = this.processData(rawData);
+        if (rawData.length !== 1) {
+            let data = this.processData(rawData);
 
-        // rendering data and download link
-        let diffData = chart.computeDiff(data.complete, data.attempt);
-        chart.draw(diffData, this.option);
+            // rendering data and download link
+            let diffData = chart.computeDiff(data.complete, data.attempt);
+            chart.draw(diffData, this.option);
+        } else {
+            chart.draw(google.visualization.arrayToDataTable(rawData[0]), this.option);
+        }
         return this;
     }
 
