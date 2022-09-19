@@ -43,6 +43,9 @@
             SHEET_NAME: 'Passing'
         },
 
+        /**
+         * for possession
+         */
         POSSESSION: {
             DEF_PEN_COL: 11,
             DEF_3RD_COL: 12,
@@ -50,6 +53,19 @@
             ATT_3RD_COL: 14,
             ATT_PEN_COL: 15,
             SHEET_NAME: 'Possession'
+        },
+
+        /**
+         * for goal log
+         */
+        GOAL_LOG: {
+            SCORER_COL: 4,
+            ASSIST_COL: 12,
+            GCA1_COL: 13,
+            GCA1_TYPE_COL: 14,
+            GCA2_COL: 15,
+            GCA2_TYPE_COL: 16,
+            SHEET_NAME: 'Goal Log'
         },
 
         FILTER_MIN: 30,

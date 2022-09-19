@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Arsenal PL</title>
+</head>
+
+<link rel="stylesheet" href="./css/dashboard.css">
+
+<body>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="./js/const/const.js"></script>
+    <script src="./js/common/common.js"></script>
+    <script src="./js/download/spread-sheet-loader.js"></script>
+    <script src="./js/charts/charts-utils.js"></script>
+    <script src="./js/charts/heatmap.js"></script>
+    <script src="./js/data/goal-log.js"></script>
+    <script src="./js/team/team-template.js"></script>
+    <script src="./js/team/arsenal.js"></script>
+    <script src="./js/charts/setting.js"></script>
+    <script>
+        (function () {
+            setAndExec(function () {
+                let arsenal = new Arsenal(['2021-22', '2022-23'], true);
+            });
+        })();
+    </script>
+</body>
+
+</html>
