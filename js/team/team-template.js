@@ -1,7 +1,7 @@
 /**
- * PlayerTemplate
+ * TeamTemplate
  */
-class PlayerTemplate {
+class TeamTemplate {
 
     /**
      * create template charts.
@@ -11,11 +11,7 @@ class PlayerTemplate {
             if (!this.isLoadedData()) {
                 return;
             }
-            this.createGoalShotCreationChart();
-            this.createExpectedChart();
-            this.createExpectedDiffChart();
-            this.createPassingChart();
-            this.createPossessionChart();
+            this.createGoalLogChart();
             clearInterval(sleep);
         }, 1000);
     }
@@ -29,37 +25,9 @@ class PlayerTemplate {
     }
 
     /**
-     * create goal and shot creation chart
+     * create goal log chart
      */
-    createGoalShotCreationChart() {
-        // override if you render
-    }
-
-    /**
-     * create expected chart
-     */
-    createExpectedChart() {
-        // override if you render
-    }
-
-    /**
-     * create expected diff chart
-     */
-    createExpectedDiffChart() {
-        // override if you render
-    }
-
-    /**
-     * create passing chart
-     */
-    createPassingChart() {
-        // override if you render
-    }
-
-    /**
-     * create possession chart
-     */
-    createPossessionChart() {
+    createGoalLogChart() {
         // override if you render
     }
 

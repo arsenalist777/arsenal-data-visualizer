@@ -41,4 +41,16 @@ class Common {
             body[0].appendChild(chartAreaElem);
         });
     }
+
+    /**
+     * check whether the string is blank
+     * @param {String} str 
+     * @returns result
+     */
+    static isBlank(str) {
+        if (str == null || str === '') {
+            return true;
+        }
+        return false;
+    }
 }
