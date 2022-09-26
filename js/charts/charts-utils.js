@@ -33,21 +33,57 @@ class ChartsUtils {
             const svgText = new XMLSerializer().serializeToString(svgNode);
             const svgDataUrl = 'data:image/svg+xml;charset=utf-8;base64,' + btoa(unescape(encodeURIComponent(svgText)));
             let image = new Image();
-            image.onload = function () {
+            image.onload = () => {
                 let canvas = document.createElement('canvas');
                 canvas.width = svgNode.width.baseVal.value;
                 canvas.height = svgNode.height.baseVal.value;
                 let context = canvas.getContext('2d');
                 context.drawImage(image, 0, 0);
-                let pngDataUrl = canvas.toDataURL('image/png');
-                document.getElementById(targetId).nextElementSibling.setAttribute("href", pngDataUrl);
-                setTimeout(function () {
-                    window.URL.revokeObjectURL(pngDataUrl);
-                    canvas.remove();
-                }, 10)
+
+                // set dataurl of canvas
+                ChartsUtils.setDataUrlOfCanvas(canvas, targetId);
             };
             image.src = svgDataUrl;
         });
     }
 
+    /**
+     * create download canvases link as png
+     * @param {String} targetId 
+     */
+    static createDownloadCanvasLink(targetId) {
+
+        // render multiple canvases
+        let canvases = Array.from(document.getElementById(targetId).getElementsByTagName('canvas'));
+        let downloadCanvas = document.createElement('canvas');
+        downloadCanvas.width = canvases[0].width;
+        downloadCanvas.height = canvases[0].height;
+        let downloadContext = downloadCanvas.getContext('2d');
+
+        // set background color
+        downloadContext.fillStyle = "white";
+        downloadContext.fillRect(0, 0, downloadCanvas.width, downloadCanvas.height);
+        canvases.map(canvas => {
+
+            // draw multiple canvases
+            downloadContext.drawImage(canvas, 0, 0, canvas.width, canvas.height);
+        });
+
+        // set dataurl of canvas
+        this.setDataUrlOfCanvas(downloadCanvas, targetId);
+    }
+
+    /**
+     * set dataurl of canvas
+     * @param {Element} canvas canvas element
+     * @param {String} targetId targetId
+     */
+    static setDataUrlOfCanvas(canvas, targetId) {
+        let pngDataUrl = canvas.toDataURL('image/png');
+        document.getElementById(targetId).nextElementSibling.setAttribute("href", pngDataUrl);
+        setTimeout(function () {
+            window.URL.revokeObjectURL(pngDataUrl);
+            canvas.remove();
+        }, 10);
+    }
 }

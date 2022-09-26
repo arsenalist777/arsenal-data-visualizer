@@ -63,13 +63,21 @@ class Arsenal extends TeamTemplate {
         let title = ' GCA Network ';
 
         // heatmap
-        const GCA_NETWORK_TARGET_ID = 'chart_gca_network_';
+        const GCA_NETWORK_HEATMAP_TARGET_ID = 'chart_heatmap_gca_network_';
+        const GCA_NETWORK_GRAPH_TARGET_ID = 'chart_graph_gca_network_';
         Object.keys(this.goalLogData).map(key => {
 
             // rendering each season
-            let targetId = GCA_NETWORK_TARGET_ID + key;
-            Common.addChartDiv([targetId]);
-            new Heatmap(this.name + title + key).render(this.goalLogData[key], targetId);
+            let targetHeatmapId = GCA_NETWORK_HEATMAP_TARGET_ID + key;
+            let targetGraphId = GCA_NETWORK_GRAPH_TARGET_ID + key;
+
+            // create heatmap
+            Common.addChartDiv([targetHeatmapId]);
+            new Heatmap(this.name + title + key).render(this.goalLogData[key], targetHeatmapId);
+
+            // create graph
+            Common.addChartDiv([targetGraphId], true);
+            new Graph(this.name + title + key).render(this.goalLogData[key], targetGraphId);
 
         });
     }

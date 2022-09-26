@@ -25,13 +25,16 @@ class Common {
      * add div for rendering
      * @param {Array} targetIds target id attribute list for chart
      */
-    static addChartDiv(targetIds) {
+    static addChartDiv(targetIds, isGraph) {
         let body = document.getElementsByTagName('body');
         targetIds.forEach(targetId => {
             let chartAreaElem = document.createElement('div');
             chartAreaElem.setAttribute('class', 'chart');
             let renderAreaElem = document.createElement('div');
             renderAreaElem.setAttribute('id', targetId);
+            if (isGraph) {
+                renderAreaElem.setAttribute('class', 'graph');
+            }
             let downloadAreaElem = document.createElement('a');
             downloadAreaElem.setAttribute('href', '/');
             downloadAreaElem.setAttribute('download', '');
