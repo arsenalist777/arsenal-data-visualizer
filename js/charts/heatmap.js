@@ -9,6 +9,8 @@ class Heatmap {
      */
     constructor(title) {
         this.option = {
+
+            // option for vega lite
             vegaLite: {
                 $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
                 title: title,
@@ -46,7 +48,7 @@ class Heatmap {
      * reandering method
      * @param {Array[Array]} rawData data from google spreadsheet
      * @param {String} targetId rendering target id attribute
-     * @returns Area instance
+     * @returns Heatmap instance
      */
     render(rawData, targetId) {
         let chartDiv = document.getElementById(targetId);

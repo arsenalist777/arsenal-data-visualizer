@@ -22,7 +22,7 @@ class Pie {
      * reandering method
      * @param {Array[Array]} rawData data from google spreadsheet
      * @param {String} targetId rendering target id attribute
-     * @returns Area instance
+     * @returns Pie instance
      */
     render(rawData, targetId) {
         let chartDiv = document.getElementById(targetId);

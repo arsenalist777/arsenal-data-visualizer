@@ -1,10 +1,14 @@
 .chart {
-    text-align: center;
     display: flex;
     align-items: center;
     flex-flow: column;
 }
 
-.chart>* {
+.chart .graph {
+    width: 80%;
+    height: 600px;
+}
+
+.chart a {
     text-align: center;
 }

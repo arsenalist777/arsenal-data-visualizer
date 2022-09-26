@@ -68,6 +68,127 @@
             SHEET_NAME: 'Goal Log'
         },
 
+        /**
+         * player default data
+         */
+        PLAYER: {
+            'Pierre-Emerick Aubameyang': {
+                name: 'Aubameyang',
+                x: 0.55,
+                y: 0.9
+            },
+            'Gabriel Jesus': {
+                name: 'Jesus',
+                x: 0.55,
+                y: 0.9
+            },
+            'Alexandre Lacazette': {
+                name: 'Lacazette',
+                x: 0.5,
+                y: 0.85
+            },
+            'Eddie Nketiah': {
+                name: 'Nketiah',
+                x: 0.35,
+                y: 0.9
+            },
+            'Bukayo Saka': {
+                name: 'Saka',
+                x: 0.8,
+                y: 0.8
+            },
+            'Nicolas Pépé': {
+                name: 'Pépé',
+                x: 0.75,
+                y: 0.7
+            },
+            'Martinelli': {
+                name: 'Martinelli',
+                x: 0.2,
+                y: 0.8
+            },
+            'Emile Smith Rowe': {
+                name: 'Smith Rowe',
+                x: 0.15,
+                y: 0.7
+            },
+            'Martin Ødegaard': {
+                name: 'Ødegaard',
+                x: 0.6,
+                y: 0.65
+            },
+            'Fabio Vieira': {
+                name: 'Vieira',
+                x: 0.5,
+                y: 0.7
+            },
+            'Granit Xhaka': {
+                name: 'Xhaka',
+                x: 0.4,
+                y: 0.65
+            },
+            'Thomas Partey': {
+                name: 'Partey',
+                x: 0.5,
+                y: 0.55
+            },
+            'Mohamed Elneny': {
+                name: 'Elneny',
+                x: 0.55,
+                y: 0.5
+            },
+            'Kieran Tierney': {
+                name: 'Tierney',
+                x: 0.2,
+                y: 0.45
+            },
+            'Oleksandr Zinchenko': {
+                name: 'Zinchenko',
+                x: 0.3,
+                y: 0.45
+            },
+            'Nuno Tavares': {
+                name: 'Tavares',
+                x: 0.25,
+                y: 0.35
+            },
+            'Gabriel Dos Santos': {
+                name: 'Gabriel',
+                x: 0.4,
+                y: 0.4
+            },
+            'Rob Holding': {
+                name: 'Holding',
+                x: 0.5,
+                y: 0.4
+            },
+            'Ben White': {
+                name: 'White',
+                x: 0.7,
+                y: 0.4
+            },
+            'William Saliba': {
+                name: 'Saliba',
+                x: 0.6,
+                y: 0.4
+            },
+            'Takehiro Tomiyasu': {
+                name: 'Tomiyasu',
+                x: 0.8,
+                y: 0.45
+            },
+            'Cédric Soares': {
+                name: 'Cédric',
+                x: 0.75,
+                y: 0.35
+            },
+            'Aaron Ramsdale': {
+                name: 'Ramsdale',
+                x: 0.5,
+                y: 0.3
+            }
+        },
+
         FILTER_MIN: 30,
         FULLTIME_MIN: 90
     };

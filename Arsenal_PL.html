@@ -15,16 +15,62 @@
     <script src="./js/download/spread-sheet-loader.js"></script>
     <script src="./js/charts/charts-utils.js"></script>
     <script src="./js/charts/heatmap.js"></script>
+    <script src="./js/charts/graph.js"></script>
     <script src="./js/data/goal-log.js"></script>
     <script src="./js/team/team-template.js"></script>
     <script src="./js/team/arsenal.js"></script>
     <script src="./js/charts/setting.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.21.0/graphology.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.3.0/sigma.min.js"></script>
     <script>
         (function () {
             setAndExec(function () {
                 let arsenal = new Arsenal(['2021-22', '2022-23'], true);
             });
         })();
+
+        // const graph = new graphology.Graph();
+        // graph.import({
+        //     'nodes': [
+        //         {
+        //             key: "1",
+        //             attributes: {
+        //                 label: "sample1",
+        //                 x: Math.random(),
+        //                 y: Math.random(),
+        //                 size: 10
+        //             }
+        //         },
+        //         {
+        //             key: "2",
+        //             attributes: {
+        //                 label: "sample2",
+        //                 x: Math.random(),
+        //                 y: Math.random(),
+        //                 size: 10
+        //             }
+        //         }
+        //     ],
+        //     'edges': [
+        //         {
+        //             key: 'edge1',
+        //             source: "1",
+        //             target: "2",
+        //             attributes: {
+        //                 size: 10
+        //             }
+        //         },
+        //         {
+        //             key: 'edge2',
+        //             source: "1",
+        //             target: "1",
+        //             attributes: {
+        //                 size: 10
+        //             }
+        //         }
+        //     ]
+        // });
+        // const renderer = new Sigma(graph, document.getElementById("graphArea"));
     </script>
 </body>
 
