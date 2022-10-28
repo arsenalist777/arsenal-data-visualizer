@@ -16,7 +16,11 @@
     <script src="./js/charts/charts-utils.js"></script>
     <script src="./js/charts/heatmap.js"></script>
     <script src="./js/charts/graph.js"></script>
+    <script src="./js/charts/area.js"></script>
+    <script src="./js/charts/combo.js"></script>
     <script src="./js/data/goal-log.js"></script>
+    <script src="./js/data/defensive-actions.js"></script>
+    <script src="./js/data/possession.js"></script>
     <script src="./js/team/team-template.js"></script>
     <script src="./js/team/arsenal.js"></script>
     <script src="./js/charts/setting.js"></script>
@@ -28,49 +32,6 @@
                 let arsenal = new Arsenal(['2021-22', '2022-23'], true);
             });
         })();
-
-        // const graph = new graphology.Graph();
-        // graph.import({
-        //     'nodes': [
-        //         {
-        //             key: "1",
-        //             attributes: {
-        //                 label: "sample1",
-        //                 x: Math.random(),
-        //                 y: Math.random(),
-        //                 size: 10
-        //             }
-        //         },
-        //         {
-        //             key: "2",
-        //             attributes: {
-        //                 label: "sample2",
-        //                 x: Math.random(),
-        //                 y: Math.random(),
-        //                 size: 10
-        //             }
-        //         }
-        //     ],
-        //     'edges': [
-        //         {
-        //             key: 'edge1',
-        //             source: "1",
-        //             target: "2",
-        //             attributes: {
-        //                 size: 10
-        //             }
-        //         },
-        //         {
-        //             key: 'edge2',
-        //             source: "1",
-        //             target: "1",
-        //             attributes: {
-        //                 size: 10
-        //             }
-        //         }
-        //     ]
-        // });
-        // const renderer = new Sigma(graph, document.getElementById("graphArea"));
     </script>
 </body>
 

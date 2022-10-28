@@ -12,6 +12,8 @@ class TeamTemplate {
                 return;
             }
             this.createGoalLogChart();
+            this.createDefensiveActionsChart();
+            this.createPossesionChart();
             clearInterval(sleep);
         }, 1000);
     }
@@ -28,6 +30,20 @@ class TeamTemplate {
      * create goal log chart
      */
     createGoalLogChart() {
+        // override if you render
+    }
+
+    /**
+     * create defensive actions chart
+     */
+    createDefensiveActionsChart() {
+        // override if you render
+    }
+
+    /**
+     * create possesion chart
+     */
+    createPossesionChart() {
         // override if you render
     }
 

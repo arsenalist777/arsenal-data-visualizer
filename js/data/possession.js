@@ -40,4 +40,25 @@ class Possession {
             ]
         ];
     }
+
+    /**
+     * process google spreadsheet data for team stats
+     * @param {Object} data google spreadsheet data
+     * @returns Array data(opponent, defPen, def3rd, mid3rd, att3rd, attPen, posession)
+     */
+    static processDataForTeam(data) {
+        let result = [['Opponent', 'Def Pen', 'Def 3rd', 'Mid 3rd', 'Att 3rd', 'Att Pen', 'Possession']];
+        Object.keys(data).map(key => {
+            result.push([
+                data[key][Const.POSSESSION.OPPONENT_COL].substring(0, 3),
+                Number(data[key][Const.POSSESSION.DEF_PEN_COL]),
+                Number(data[key][Const.POSSESSION.DEF_3RD_COL]),
+                Number(data[key][Const.POSSESSION.MID_3RD_COL]),
+                Number(data[key][Const.POSSESSION.ATT_3RD_COL]),
+                Number(data[key][Const.POSSESSION.ATT_PEN_COL]),
+                Number(data[key][Const.POSSESSION.POSS_COL])
+            ]);
+        });
+        return result;
+    }
 }

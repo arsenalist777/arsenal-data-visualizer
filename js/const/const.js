@@ -47,6 +47,8 @@
          * for possession
          */
         POSSESSION: {
+            OPPONENT_COL: 8,
+            POSS_COL: 9,
             DEF_PEN_COL: 11,
             DEF_3RD_COL: 12,
             MID_3RD_COL: 13,
@@ -66,6 +68,18 @@
             GCA2_COL: 15,
             GCA2_TYPE_COL: 16,
             SHEET_NAME: 'Goal Log'
+        },
+
+        /**
+         * defensive actions
+         */
+        DEFENSIVE_ACTIONS: {
+            OPPONENT_COL: 8,
+            PRESSURES_SUC_PER_COL: 20,
+            PRESSURES_DEF_3RD_COL: 21,
+            PRESSURES_MID_3RD_COL: 22,
+            PRESSURES_ATT_3RD_COL: 23,
+            SHEET_NAME: 'Defensive Actions'
         },
 
         /**
@@ -190,6 +204,7 @@
         },
 
         FILTER_MIN: 30,
-        FULLTIME_MIN: 90
+        FULLTIME_MIN: 90,
+        DATA_REF: ' (Data: StatsBomb via fbref)'
     };
 })();

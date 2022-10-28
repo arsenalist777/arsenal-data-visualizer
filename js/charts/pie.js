@@ -9,7 +9,7 @@ class Pie {
      */
     constructor(title) {
         this.option = {
-            title: title,
+            title: title + Const.DATA_REF,
             width: 800,
             height: 400,
             fontSize: 10,
