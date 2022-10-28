@@ -13,7 +13,7 @@ class Heatmap {
             // option for vega lite
             vegaLite: {
                 $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-                title: title,
+                title: title + Const.DATA_REF,
                 data: {
                     values: []
                 },

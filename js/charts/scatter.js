@@ -10,7 +10,7 @@ class Scatter {
      */
     constructor(title, vAxisTitle) {
         this.option = {
-            title: title,
+            title: title + Const.DATA_REF,
             width: 800,
             height: 400,
             hAxis: {

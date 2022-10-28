@@ -9,8 +9,7 @@ class Graph {
      */
     constructor(title) {
         this.option = {
-            title: title,
-
+            title: title + Const.DATA_REF
         }
     }
 

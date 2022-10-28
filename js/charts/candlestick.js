@@ -11,7 +11,7 @@ class Candlestick {
     constructor(title, vAxisTitle) {
         this.option = {
             legend: 'none',
-            title: title,
+            title: title + Const.DATA_REF,
             width: 800,
             height: 400,
             vAxis: {

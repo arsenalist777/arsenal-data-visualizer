@@ -10,7 +10,6 @@ class ChartsUtils {
      */
     static createDownloadLink(chart, targetId) {
         google.visualization.events.addListener(chart, 'ready', function () {
-            console.log(chart);
             document.getElementById(targetId).nextElementSibling.setAttribute("href", chart.getImageURI());
         });
     }
