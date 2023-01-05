@@ -83,6 +83,16 @@
         },
 
         /**
+         * css option
+         */
+        CSS: {
+            PRESSURE: ['#1B435D', '#8CD790', '#F99F48', '#EE817B', '#1B435D'],
+            POSSESSION: ['#1B435D', '#77AF9C', '#8CD790', '#FFC042', '#F99F48', '#EE817B'],
+            COMPARE: ['#1B435D', '#F99F48'],
+            DEFAULT: ['#1B435D', '#77AF9C']
+        },
+
+        /**
          * player default data
          */
         PLAYER: {
@@ -205,6 +215,7 @@
 
         FILTER_MIN: 30,
         FULLTIME_MIN: 90,
+        AXIS_RATE: 'rate',
         DATA_REF: ' (Data: StatsBomb via fbref)'
     };
 })();

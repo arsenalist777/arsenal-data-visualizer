@@ -27,7 +27,8 @@ class Scatter {
                 },
                 title: vAxisTitle,
             },
-            dataOpacity: 0.5
+            dataOpacity: 0.5,
+            colors: Const.CSS.COMPARE
         };
     }
 

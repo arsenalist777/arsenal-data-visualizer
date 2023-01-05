@@ -121,7 +121,7 @@ class Arsenal extends TeamTemplate {
 
             // create combo
             Common.addChartDiv([targetComboId]);
-            new Combo(this.name + title + key).render(this.defensiveActionsData[key], targetComboId, ['3', '4']);
+            new Combo(this.name + title + key, null, Const.AXIS_RATE, Const.CSS.PRESSURE).render(this.defensiveActionsData[key], targetComboId, ['3', '4']);
         });
     }
 
@@ -138,7 +138,7 @@ class Arsenal extends TeamTemplate {
 
             // create combo
             Common.addChartDiv([targetComboId]);
-            new Combo(this.name + title + key).render(this.possessionData[key], targetComboId, ['5']);
+            new Combo(this.name + title + key, null, Const.AXIS_RATE, Const.CSS.POSSESSION).render(this.possessionData[key], targetComboId, ['5']);
         });
 
     }

@@ -14,7 +14,8 @@ class Pie {
             height: 400,
             fontSize: 10,
             sliceVisibilityThreshold: 0,
-            pieSliceText: 'percentage'
+            pieSliceText: 'percentage',
+            colors: Const.CSS.POSSESSION
         };
     }
 

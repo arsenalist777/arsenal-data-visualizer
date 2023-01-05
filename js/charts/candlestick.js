@@ -16,7 +16,8 @@ class Candlestick {
             height: 400,
             vAxis: {
                 title: vAxisTitle
-            }
+            },
+            colors: Const.CSS.DEFAULT
         };
     }
 
