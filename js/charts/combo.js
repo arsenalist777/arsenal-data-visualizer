@@ -8,8 +8,9 @@ class Combo {
      * @param {String} title title
      * @param {String} hAxisTitle hAxisTitle
      * @param {String} vAxisTitle vAxisTitle
+     * @param {String} colors thema colors
      */
-    constructor(title, hAxisTitle, vAxisTitle) {
+    constructor(title, hAxisTitle, vAxisTitle, colors) {
         this.option = {
             title: title + Const.DATA_REF,
             width: 1200,
@@ -23,7 +24,7 @@ class Combo {
             },
             vAxes: {
                 0: {
-                    title: 'rate(%)',
+                    title: vAxisTitle,
                     gridlines: {
                         color: 'transparent'
                     }
@@ -37,7 +38,8 @@ class Combo {
                 }
             },
             seriesType: 'bars',
-            isStacked: 'percent'
+            isStacked: 'percent',
+            colors: colors
         };
     }
 

@@ -23,7 +23,8 @@ class Area {
             },
             vAxis: {
                 title: vAxisTitle
-            }
+            },
+            colors: Const.CSS.COMPARE
         };
     }
 
