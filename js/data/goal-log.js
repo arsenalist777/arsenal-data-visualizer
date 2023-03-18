@@ -47,7 +47,7 @@ class GoalLog {
             // gca2
             let gca2 = data[key][Const.GOAL_LOG.GCA2_COL];
             let gca2Type = data[key][Const.GOAL_LOG.GCA2_TYPE_COL];
-            if (!Common.isBlank(gca1) && !Common.isBlank(gca2)) {
+            if (!Common.isBlank(gca1) && !Common.isBlank(gca2) && gca1 !== gca2) {
                 this.calcPointGca(pointManager, gca2Type, gca1, gca2, this.GCA2_POINT);
             }
         });

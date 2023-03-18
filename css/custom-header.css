@@ -1,0 +1,10 @@
+/* icons */
+span.icon-canon {
+  content: url("../img/canon.svg");
+  padding-right: 0.3em;
+}
+
+/* override bootstrap/_navbar.scss */
+.navbar-toggler {
+  font-size: 1.0rem;
+}
