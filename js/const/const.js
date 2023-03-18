@@ -5,6 +5,48 @@
      */
     Const = {
 
+        CHART_DIV: '<div class= "col d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-right">'
+            + '<h2 class="h2">${title}</h2>'
+            + '<div class="btn-toolbar mb-2 mb-md-0">'
+            + '<div class="btn-group me-2">'
+            + '<button id="export-${chartId}" type="button" class="btn btn-sm btn-outline-secondary disabled">'
+            + '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
+            + 'Loading...'
+            + '</button>'
+            + '</div>'
+            + '</div>'
+            + '</div>'
+            + '<div id="${chartId}" class= "text-center">'
+            + '<div class="spinner-border" role="status">'
+            + '</div>'
+            + '</div>',
+
+        /**
+         * image urls
+         */
+        IMG_URL: {
+            Arsenal: './img/arsenal.png',
+            'Aston Villa': './img/aston-villa.png',
+            Bournemouth: './img/bournemouth.png',
+            Brentford: './img/brentford.png',
+            Brighton: './img/brighton.png',
+            Chelsea: './img/chelsea.png',
+            'Crystal Palace': './img/crystal-palace.png',
+            Everton: './img/everton.png',
+            Fulham: './img/fulham.png',
+            'Leeds United': './img/leeds.png',
+            'Leicester City': './img/leicester.png',
+            Liverpool: './img/liverpool.png',
+            'Manchester City': './img/manchester-city.png',
+            'Manchester Utd': './img/manchester-united.png',
+            'Newcastle Utd': './img/newcastle.png',
+            'Nott\'ham Forest': './img/nottingham-forest.png',
+            Southampton: './img/southampton.png',
+            Tottenham: './img/tottenham.png',
+            'West Ham': './img/west-ham.png',
+            Wolves: './img/wolves.png',
+        },
+
         /**
          * for goal and shot creation
          */
@@ -18,15 +60,28 @@
         },
 
         /**
+         * for shooting
+         */
+        SHOOTING: {
+            SQUAD_COL: 0,
+            SH_COL: 4,
+            XG_COL: 15,
+            G_XG_COL: 19,
+            SHEET_NAME: 'Shooting'
+        },
+
+
+
+        /**
          * for expected
          */
         EXPECTED: {
             MIN_COL: 9,
             GLS_COL: 10,
             AST_COL: 11,
-            XG_COL: 23,
-            NPXG_COL: 24,
-            XA_COL: 25,
+            XG_COL: 22,
+            NPXG_COL: 23,
+            XA_COL: 24,
             SHEET_NAME: 'Summary'
         },
 
@@ -62,11 +117,11 @@
          */
         GOAL_LOG: {
             SCORER_COL: 4,
-            ASSIST_COL: 12,
-            GCA1_COL: 13,
-            GCA1_TYPE_COL: 14,
-            GCA2_COL: 15,
-            GCA2_TYPE_COL: 16,
+            ASSIST_COL: 14,
+            GCA1_COL: 15,
+            GCA1_TYPE_COL: 16,
+            GCA2_COL: 17,
+            GCA2_TYPE_COL: 18,
             SHEET_NAME: 'Goal Log'
         },
 
@@ -216,6 +271,6 @@
         FILTER_MIN: 30,
         FULLTIME_MIN: 90,
         AXIS_RATE: 'rate',
-        DATA_REF: ' (Data: StatsBomb via fbref)'
+        DATA_REF: ' (Data: StatsBomb via FBREF)'
     };
 })();

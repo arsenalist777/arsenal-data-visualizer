@@ -1,35 +1,206 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Arsenal PL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="arsenalist777">
+    <title>Arsenal Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Bootstrap dashboard CSS -->
+    <link rel="stylesheet" href="./css/bootstrap/dashboard.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/custom-header.css">
+    <link rel="stylesheet" href="./css/custom-sidebars.css">
+    <link rel="stylesheet" href="./css/chart.css">
 </head>
 
-<link rel="stylesheet" href="./css/dashboard.css">
-
 <body>
+
+    <!-- header -->
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-3 pt-1 pb-1" href="#"><span
+                class="icon-canon pt-1"></span>Arsenal</a>
+        <!-- navigation -->
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </header>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- sidebar -->
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse scrollarea">
+                <div class="position-sticky pt-2">
+                    <ul class="nav flex-column">
+                        <!-- Team -->
+                        <li class="nav-item">
+                            <button class="btn btn-toggle align-items-center rounded collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#team-collapse" aria-expanded="false">
+                                <span class="icon-soccer-field"></span>
+                                Team
+                            </button>
+                            <div class="collapse" id="team-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+                                    <li><a href="#" class="link-dark rounded"><span class="icon-sword"></span>Attack</a>
+                                    </li>
+                                    <li><a href="#" class="link-dark rounded"><span
+                                                class="icon-shield-checkered"></span>Defense</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- Player -->
+                        <li class="nav-item">
+                            <button class="btn btn-toggle align-items-center rounded collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#player-collapse" aria-expanded="false">
+                                <span class="icon-people"></span>
+                                Player
+                            </button>
+                            <div class="collapse" id="player-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+                                    <!-- FW -->
+                                    <li class="mb-1 ms-3">
+                                        <button class="btn btn-toggle align-items-center rounded collapsed small"
+                                            data-bs-toggle="collapse" data-bs-target="#player-fw-collapse"
+                                            aria-expanded="false">
+                                            <span class="icon-shoe"></span>
+                                            FW
+                                        </button>
+                                        <div class="collapse" id="player-fw-collapse">
+                                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                                <li><a href="#" class="link-dark rounded">Gabriel Jesus</a></li>
+                                                <li><a href="#" class="link-dark rounded">Gabriel Maltinelli</a></li>
+                                                <li><a href="#" class="link-dark rounded">Eddie Nketiah</a></li>
+                                                <li><a href="#" class="link-dark rounded">Leandro Trossard</a></li>
+                                                <li><a href="#" class="link-dark rounded">Reiss Nelson</a>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!-- MF -->
+                                    <li class="mb-1 ms-3">
+                                        <button class="btn btn-toggle align-items-center rounded collapsed small"
+                                            data-bs-toggle="collapse" data-bs-target="#player-mf-collapse"
+                                            aria-expanded="false">
+                                            <span class="icon-shirt-sport"></span>
+                                            MF
+                                        </button>
+                                        <div class="collapse" id="player-mf-collapse">
+                                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                                <li><a href="#" class="link-dark rounded">Thomas Partey</a></li>
+                                                <li><a href="#" class="link-dark rounded">Bukayo Saka</a></li>
+                                                <li><a href="#" class="link-dark rounded">Martin Ødegaard</a></li>
+                                                <li><a href="#" class="link-dark rounded">Emile Smith Rowe</a></li>
+                                                <li><a href="#" class="link-dark rounded">Jorginho</a></li>
+                                                <li><a href="#" class="link-dark rounded">Fabio Vieira</a></li>
+                                                <li><a href="#" class="link-dark rounded">Mohamed Elneny</a></li>
+                                                <li><a href="#" class="link-dark rounded">Granit Xhaka</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!-- DF -->
+                                    <li class="mb-1 ms-3">
+                                        <button class="btn btn-toggle align-items-center rounded collapsed small"
+                                            data-bs-toggle="collapse" data-bs-target="#player-df-collapse"
+                                            aria-expanded="false">
+                                            <span class="icon-lock"></span>
+                                            DF
+                                        </button>
+                                        <div class="collapse" id="player-df-collapse">
+                                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                                <li><a href="#" class="link-dark rounded">Kieran Tierney</a></li>
+                                                <li><a href="#" class="link-dark rounded">Ben White</a></li>
+                                                <li><a href="#" class="link-dark rounded">Gabriel Magalhaes</a></li>
+                                                <li><a href="#" class="link-dark rounded">William Saliba</a></li>
+                                                <li><a href="#" class="link-dark rounded">Jakub Kiwior</a></li>
+                                                <li><a href="#" class="link-dark rounded">Rob Holding</a></li>
+                                                <li><a href="#" class="link-dark rounded">Takehiro Tomiyasu</a></li>
+                                                <li><a href="#" class="link-dark rounded">Oleksandr Zinchenko</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!-- GK -->
+                                    <li class="mb-1 ms-3">
+                                        <button class="btn btn-toggle align-items-center rounded collapsed small"
+                                            data-bs-toggle="collapse" data-bs-target="#player-gk-collapse"
+                                            aria-expanded="false">
+                                            <span class="icon-hand-stop"></span>
+                                            GK
+                                        </button>
+                                        <div class="collapse" id="player-gk-collapse">
+                                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                                <li><a href="#" class="link-dark rounded">Aaron Ramsdale</a></li>
+                                                <li><a href="#" class="link-dark rounded">Matt Turner</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-toggle align-items-center rounded collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#links-collapse" aria-expanded="false">
+                                <span class="icon-link"></span>
+                                Links
+                            </button>
+                            <div class="collapse" id="links-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+                                    <li>
+                                        <a href="https://fbref.com/" class="link-dark rounded" target="_blank"><span
+                                                class="icon-info"></span>FBREF</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/arsenalist777/arsenal-data-visualizer"
+                                            class="link-dark rounded" target="_blank"><span
+                                                class="icon-github"></span>GitHub</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            </main>
+        </div>
+
+    </div>
+
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="./js/const/const.js"></script>
     <script src="./js/common/common.js"></script>
     <script src="./js/download/spread-sheet-loader.js"></script>
     <script src="./js/charts/charts-utils.js"></script>
-    <script src="./js/charts/heatmap.js"></script>
+    <!-- <script src="./js/charts/heatmap.js"></script>
     <script src="./js/charts/graph.js"></script>
     <script src="./js/charts/area.js"></script>
-    <script src="./js/charts/combo.js"></script>
-    <script src="./js/data/goal-log.js"></script>
-    <script src="./js/data/defensive-actions.js"></script>
-    <script src="./js/data/possession.js"></script>
-    <script src="./js/team/team-template.js"></script>
-    <script src="./js/team/arsenal.js"></script>
+    <script src="./js/charts/combo.js"></script> -->
+    <script src="./js/charts/image-based-scatter.js"></script>
+    <script src="./js/data/shooting.js"></script>
+    <script src="./js/league/league-template.js"></script>
+    <script src="./js/league/pl-attacking.js"></script>
     <script src="./js/charts/setting.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.21.0/graphology.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.3.0/sigma.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.1/graphology.umd.min.js"
+        integrity="sha512-GmmewWpb5XLYSZhn6Ie7WR5/R8Qtu6rPWWiAZyImgcbrUAZnLRiIZ3tKu61dW3uWxPgApt3l54bL5oD3ZYdCXw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.3.0/sigma.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <script>
         (function () {
             setAndExec(function () {
-                let arsenal = new Arsenal(['2021-22', '2022-23'], true);
+                let plemierLeagueAttacking = new PlAttacking('2022-23', true);
             });
         })();
     </script>

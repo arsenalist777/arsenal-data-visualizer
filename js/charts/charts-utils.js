@@ -38,12 +38,125 @@ class ChartsUtils {
                 canvas.height = svgNode.height.baseVal.value;
                 let context = canvas.getContext('2d');
                 context.drawImage(image, 0, 0);
-
-                // set dataurl of canvas
                 ChartsUtils.setDataUrlOfCanvas(canvas, targetId);
             };
             image.src = svgDataUrl;
         });
+    }
+
+    /**
+     * export svg as png for image based chart
+     * @param {String} targetId targetId
+     * @param {String} title title
+     * @param {Boolean} isDownloaded isDownloaded
+     */
+    static exportSvgToPngForImageBasedChart(targetId, title, isDownloaded) {
+
+        // set base64 to svg-image href
+        let svgNode = document.getElementById(targetId).firstChild;
+        let images = Array.from(svgNode.getElementsByTagName('image'));
+        let imageSrcs = images.map(image => image.getAttribute('href'));
+
+        if (!isDownloaded) {
+
+            if (Object.keys(Common.base64PlEmblemCache).length !== images.length) {
+                // create base64 from url
+                this.convertBase64Images(imageSrcs).then((base64Images) => {
+
+                    // set base64 to svg-image href
+                    this.loadBase64Images(images, base64Images).then(() => {
+
+                        // download svg as png
+                        this.downloadSvgAsPng(svgNode, title);
+                    });
+
+                });
+            } else {
+
+                // set base64 to svg-image href
+                this.loadBase64ImagesFromCache(images, Common.base64PlEmblemCache).then(() => {
+
+                    // download svg as png
+                    this.downloadSvgAsPng(svgNode, title);
+                });
+            }
+        } else {
+
+            // download svg as png
+            this.downloadSvgAsPng(svgNode, title);
+        }
+    }
+
+    /**
+     * download svg as png
+     * @param {*} svgNode svgNode
+     * @param {*} title chart title
+     */
+    static downloadSvgAsPng(svgNode, title) {
+        const svgText = new XMLSerializer().serializeToString(svgNode);
+        const svgDataUrl = 'data:image/svg+xml;charset=utf-8;base64,' + btoa(unescape(encodeURIComponent(svgText)));
+        let img = new Image();
+        img.onload = () => {
+            let canvas = document.createElement('canvas');
+            canvas.width = svgNode.width.baseVal.value;
+            canvas.height = svgNode.height.baseVal.value;
+            let context = canvas.getContext('2d');
+            context.drawImage(img, 0, 0);
+
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL('image/png');
+            a.download = title + '.png';
+            document.body.appendChild(a);
+            a.click();
+        };
+        img.src = svgDataUrl;
+    }
+
+    /**
+     * convert image urls to base64
+     * @param {Array} srcs image url list
+     * @returns Promise(promises)
+     */
+    static convertBase64Images(srcs) {
+        let promises = srcs.map(src => Common.convertImageToBase64(src));
+        return Promise.all(promises);
+    }
+
+    /**
+     * set base64 to svg-image href
+     * @param {Array} images image element list
+     * @param {Array} base64Images base64 image list
+     * @returns 
+     */
+    static loadBase64Images(images, base64Images) {
+        let promieses = images.map((image, index) => {
+            return new Promise((resolve, reject) => {
+                image.onload = () => resolve();
+                image.onerror = (e) => reject(e);
+
+                // set base64 to cache
+                Common.setBase64PlEmblemCache(image.getAttribute('href'), base64Images[index]);
+                image.setAttribute('href', base64Images[index]);
+            });
+        });
+        return Promise.all(promieses);
+    }
+
+    /**
+     * set base64 to svg-image href from cache
+     * @param {Array} images 
+     * @param {Object} base64Images 
+     * @returns 
+     */
+    static loadBase64ImagesFromCache(images, base64Images) {
+        let promieses = images.map((image, index) => {
+            return new Promise((resolve, reject) => {
+                image.onload = () => resolve();
+                image.onerror = (e) => reject(e);
+                image.setAttribute('href', base64Images[image.getAttribute('href')]);
+            });
+        });
+        return Promise.all(promieses);
     }
 
     /**
@@ -79,7 +192,10 @@ class ChartsUtils {
      */
     static setDataUrlOfCanvas(canvas, targetId) {
         let pngDataUrl = canvas.toDataURL('image/png');
-        document.getElementById(targetId).nextElementSibling.setAttribute("href", pngDataUrl);
+        let downloadLink = document.createElement('a');
+        downloadLink.setAttribute('download', 'download');
+        downloadLink.setAttribute('href', pngDataUrl);
+        downloadLink.click();
         setTimeout(function () {
             window.URL.revokeObjectURL(pngDataUrl);
             canvas.remove();
