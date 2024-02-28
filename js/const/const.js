@@ -5,6 +5,9 @@
      */
     Const = {
 
+        /**
+         * Div for chart
+         */
         CHART_DIV: '<div class= "col d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-right">'
             + '<h2 class="h2">${title}</h2>'
             + '<div class="btn-toolbar mb-2 mb-md-0">'
@@ -22,6 +25,20 @@
             + '</div>',
 
         /**
+         * Div for chart col2
+         */
+        CHART_DIV_COL2: '<div class="container">'
+            + '<div class="row">'
+            + '<div class="col-md-6">'
+            + '${col1}'
+            + '</div>'
+            + '<div class="col-md-6">'
+            + '${col2}'
+            + '</div>'
+            + '</div>'
+            + '</div>',
+
+        /**
          * image urls
          */
         IMG_URL: {
@@ -30,6 +47,7 @@
             Bournemouth: './img/bournemouth.png',
             Brentford: './img/brentford.png',
             Brighton: './img/brighton.png',
+            Burnley: './img/burnley.png',
             Chelsea: './img/chelsea.png',
             'Crystal Palace': './img/crystal-palace.png',
             Everton: './img/everton.png',
@@ -37,14 +55,23 @@
             'Leeds United': './img/leeds.png',
             'Leicester City': './img/leicester.png',
             Liverpool: './img/liverpool.png',
+            'Luton Town': './img/luton-town.png',
             'Manchester City': './img/manchester-city.png',
             'Manchester Utd': './img/manchester-united.png',
             'Newcastle Utd': './img/newcastle.png',
             'Nott\'ham Forest': './img/nottingham-forest.png',
+            'Sheffield Utd': './img/sheffield-united.png',
             Southampton: './img/southampton.png',
             Tottenham: './img/tottenham.png',
             'West Ham': './img/west-ham.png',
             Wolves: './img/wolves.png',
+        },
+
+        /**
+         * Condition for chart option
+         */
+        CHART_CONDITION: {
+            ARSENAL: 'datum["squad"] === "Arsenal"',
         },
 
         /**
@@ -60,17 +87,76 @@
         },
 
         /**
-         * for shooting
+         * for squad-shooting
          */
-        SHOOTING: {
+        SQUAD_SHOOTING: {
             SQUAD_COL: 0,
             SH_COL: 4,
             XG_COL: 15,
-            G_XG_COL: 19,
-            SHEET_NAME: 'Shooting'
+            G_XG_COL: 18,
+            SHEET_NAME: 'Squad Shooting'
         },
 
+        /**
+         * for squad-passing
+         */
+        SQUAD_PASSING: {
+            SQUAD_COL: 0,
+            TOTAL_ATT_COL: 4,
+            SHORT_CMP_COL: 8,
+            SHORT_ATT_COL: 9,
+            MEDIUM_CMP_COL: 11,
+            MEDIUM_ATT_COL: 12,
+            LONG_CMP_COL: 14,
+            LONG_ATT_COL: 15,
+            XA_COL: 19,
+            A_XAG_COL: 20,
+            KEY_PASS_COL: 21,
+            INTO_FINAL_3RD_COL: 22,
+            INTO_PEN_AREA_COL: 23,
+            CROSS_INTO_PEN_AREA_COL: 24,
+            PRG_P_COL: 25,
+            SHEET_NAME: 'Squad Passing'
+        },
 
+        /**
+         * for squad-goal-and-shot-creation
+         */
+        SQUAD_GOAL_AND_SHOT_CREATION: {
+            SQUAD_COL: 0,
+            SCA_PASS_LIVE_COL: 5,
+            SCA_PASS_DEAD_COL: 6,
+            SCA_TAKE_ON_COL: 7,
+            SCA_SHOT_COL: 8,
+            SCA_FOUL_DRAWN_COL: 9,
+            SCA_DEFENSIVE_ACTION_COL: 10,
+            GCA_PASS_LIVE_COL: 13,
+            GCA_PASS_DEAD_COL: 14,
+            GCA_TAKE_ON_COL: 15,
+            GCA_SHOT_COL: 16,
+            GCA_FOUL_DRAWN_COL: 17,
+            GCA_DEFENSIVE_ACTION_COL: 18,
+            SHEET_NAME: 'Squad Goal and Shot Creation'
+        },
+
+        /**
+         * for squad-possession
+         */
+        SQUAD_POSSESSION: {
+            SQUAD_COL: 0,
+            TOUCHES_DEF_PEN_COL: 5,
+            TOUCHES_DEF_3RD_COL: 6,
+            TOUCHES_MID_3RD_COL: 7,
+            TOUCHES_ATT_3RD_COL: 8,
+            TOUCHES_ATT_PEN_COL: 9,
+            TAKE_ONS_ATT_COL: 11,
+            TAKE_ONS_SUCC_COL: 12,
+            CARRIES_COL: 16,
+            PRG_CARRIES_COL: 19,
+            CARRIES_INTO_FINAL_3RD_COL: 20,
+            CARRIES_INTO_PEN_AREA_COL: 21,
+            SHEET_NAME: 'Squad Possession'
+        },
 
         /**
          * for expected
@@ -115,14 +201,18 @@
         /**
          * for goal log
          */
-        GOAL_LOG: {
+        GOAL_LOGS: {
             SCORER_COL: 4,
             ASSIST_COL: 14,
             GCA1_COL: 15,
             GCA1_TYPE_COL: 16,
             GCA2_COL: 17,
             GCA2_TYPE_COL: 18,
-            SHEET_NAME: 'Goal Log'
+            DIFFERENT_NAME_TABLE: {
+                'Gabriel Dos Santos': 'Gabriel Magalhaes',
+                'Martinelli': 'Gabriel Martinelli',
+            },
+            SHEET_NAME: 'Goal Logs'
         },
 
         /**
@@ -141,10 +231,66 @@
          * css option
          */
         CSS: {
+            SCHEMA: 'blues',
+            BAR_CHART_SCHEMA: '#6baed6',
+            BAR_CHART_STROKE_SCHEMA: '#f0b429',
             PRESSURE: ['#1B435D', '#8CD790', '#F99F48', '#EE817B', '#1B435D'],
             POSSESSION: ['#1B435D', '#77AF9C', '#8CD790', '#FFC042', '#F99F48', '#EE817B'],
             COMPARE: ['#1B435D', '#F99F48'],
             DEFAULT: ['#1B435D', '#77AF9C']
+        },
+
+        PLAYER_LIST: {
+            '2023-24': [
+                'Gabriel Jesus',
+                'Gabriel Martinelli',
+                'Eddie Nketiah',
+                'Leandro Trossard',
+                'Reiss Nelson',
+                'Thomas Partey',
+                'Bukayo Saka',
+                'Martin Ødegaard',
+                'Emile Smith Rowe',
+                'Jorginho',
+                'Fabio Vieira',
+                'Mohamed Elneny',
+                'Kai Havertz',
+                'Declan Rice',
+                'Ben White',
+                'Gabriel Magalhaes',
+                'William Saliba',
+                'Jakub Kiwior',
+                'Takehiro Tomiyasu',
+                'Oleksandr Zinchenko',
+                'Jurrien Timber',
+                'Aaron Ramsdale',
+                'David Raya'
+            ],
+            '2022-23': [
+                'Gabriel Jesus',
+                'Gabriel Martinelli',
+                'Eddie Nketiah',
+                'Leandro Trossard',
+                'Reiss Nelson',
+                'Thomas Partey',
+                'Bukayo Saka',
+                'Martin Ødegaard',
+                'Emile Smith Rowe',
+                'Jorginho',
+                'Fabio Vieira',
+                'Mohamed Elneny',
+                'Granit Xhaka',
+                'Kieran Tierney',
+                'Ben White',
+                'Gabriel Magalhaes',
+                'William Saliba',
+                'Jakub Kiwior',
+                'Rob Holding',
+                'Takehiro Tomiyasu',
+                'Oleksandr Zinchenko',
+                'Aaron Ramsdale',
+                'Matt Turner'
+            ]
         },
 
         /**
@@ -271,6 +417,6 @@
         FILTER_MIN: 30,
         FULLTIME_MIN: 90,
         AXIS_RATE: 'rate',
-        DATA_REF: ' (Data: StatsBomb via FBREF)'
+        DATA_REF: ' (Data: FBREF)'
     };
 })();

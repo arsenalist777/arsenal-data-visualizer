@@ -15,7 +15,7 @@ class Common {
      */
     static setBase64PlEmblemCache(key, value) {
         this.base64PlEmblemCache[key] = value;
-    }
+    };
 
     /**
      * sort array method
@@ -33,7 +33,7 @@ class Common {
             }
         });
         return array;
-    }
+    };
 
     /**
      * calc min and max value
@@ -69,7 +69,7 @@ class Common {
             }
         });
         return minMax;
-    }
+    };
 
     /**
      * add div for rendering
@@ -93,7 +93,7 @@ class Common {
             chartAreaElem.appendChild(downloadAreaElem);
             body[0].appendChild(chartAreaElem);
         });
-    }
+    };
 
     /**
      * add div for rendering
@@ -105,7 +105,31 @@ class Common {
         keyValues.forEach(keyValue => {
             main[0].insertAdjacentHTML('beforeend', this.formatStr(Const.CHART_DIV, keyValue));
         });
-    }
+    };
+
+    /**
+     * add col2 div for rendering
+     * @param {*} keyValues key and value for format chart div
+     * @param {*} isGraph is graph or not
+     */
+    static addChartDivsCol2(keyValues, isGraph) {
+        let main = document.getElementsByTagName('main');
+        keyValues.forEach(keyValue => {
+            let col2KeyValues = {
+                col1: this.formatStr(Const.CHART_DIV, keyValue[0]),
+                col2: this.formatStr(Const.CHART_DIV, keyValue[1])
+            }
+            main[0].insertAdjacentHTML('beforeend', this.formatStr(Const.CHART_DIV_COL2, col2KeyValues));
+        });
+    };
+
+    /**
+     * remove chart divs
+     */
+    static removeChartDivs() {
+        let main = document.getElementsByTagName('main');
+        main[0].innerHTML = '';
+    };
 
     /**
      * String format
@@ -117,8 +141,7 @@ class Common {
         return !values
             ? template
             : new Function(...Object.keys(values), `return \`${template}\`;`)(...Object.values(values).map(value => value ?? ''));
-    }
-
+    };
 
     /**
      * check whether the string is blank
@@ -130,7 +153,7 @@ class Common {
             return true;
         }
         return false;
-    }
+    };
 
     /**
      * convert image to base64
@@ -152,5 +175,5 @@ class Common {
             img.crossOrigin = 'anonymous';
             img.src = src;
         });
-    }
+    };
 }

@@ -32,6 +32,11 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- dropdown -->
+        <select class="form-select form-select-sm w-auto me-4" id="season-select">
+            <option value="2023-24" selected>2023-24</option>
+            <option value="2022-23">2022-23</option>
+        </select>
     </header>
 
 
@@ -181,27 +186,25 @@
     <script src="./js/common/common.js"></script>
     <script src="./js/download/spread-sheet-loader.js"></script>
     <script src="./js/charts/charts-utils.js"></script>
-    <!-- <script src="./js/charts/heatmap.js"></script>
-    <script src="./js/charts/graph.js"></script>
-    <script src="./js/charts/area.js"></script>
-    <script src="./js/charts/combo.js"></script> -->
     <script src="./js/charts/image-based-scatter.js"></script>
-    <script src="./js/data/shooting.js"></script>
+    <script src="./js/charts/stacked-bar.js"></script>
+    <script src="./js/charts/bar.js"></script>
+    <script src="./js/charts/bullet.js"></script>
+    <script src="./js/charts/heatmap.js"></script>
+    <script src="./js/data/squad-shooting.js"></script>
+    <script src="./js/data/squad-passing.js"></script>
+    <script src="./js/data/squad-goal-and-shot-creation.js"></script>
+    <script src="./js/data/goal-logs.js"></script>
+    <script src="./js/data/squad-possession.js"></script>
     <script src="./js/league/league-template.js"></script>
     <script src="./js/league/pl-attacking.js"></script>
-    <script src="./js/charts/setting.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.1/graphology.umd.min.js"
-        integrity="sha512-GmmewWpb5XLYSZhn6Ie7WR5/R8Qtu6rPWWiAZyImgcbrUAZnLRiIZ3tKu61dW3uWxPgApt3l54bL5oD3ZYdCXw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.3.0/sigma.min.js"></script>-->
+    <script src="./js/controller/controller.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script>
         (function () {
-            setAndExec(function () {
-                let plemierLeagueAttacking = new PlAttacking('2022-23', true);
-            });
+            Controller.main(document.querySelector('#season-select').value);
         })();
     </script>
 </body>
