@@ -1,12 +1,7 @@
 /**
- * Image based scatter chart
+ * bar chart
  */
-class ImageBasedScatter {
-
-    /**
-     * axis padding
-     */
-    axisPadding = 10;
+class Bar {
 
     /**
      * constructor
@@ -26,41 +21,26 @@ class ImageBasedScatter {
                 data: {
                     values: []
                 },
-                mark: {
-                    type: 'image',
-                    width: 25,
-                    height: 25
-                },
+                mark: 'bar',
                 encoding: {
                     x: {
                         'field': xAixsTitle,
-                        'type': 'quantitative',
-                        'scale': {
-                            'domain': []
-                        }
+                        'type': 'quantitative'
                     },
                     y: {
                         'field': yAixsTitle,
-                        'type': 'quantitative',
-                        'scale': {
-                            'domain': []
-                        }
+                        'type': 'nominal',
+                        'sort': "-x"
                     },
-                    url: {
-                        'field': 'img',
-                        'type': 'nominal'
+                    color: {
+                        'value': Const.CSS.BAR_CHART_SCHEMA
                     },
-                    tooltip: [
-                        {
-                            'field': xAixsTitle,
-                            'type': 'quantitative'
-                        },
-                        {
-                            'field': yAixsTitle,
-                            'type': 'quantitative'
-                        },
-                    ]
-
+                    stroke: ChartsUtils.getStrokeSetting(),
+                    strokeWidth: ChartsUtils.getStrokeWidthSetting(),
+                    tooltip: {
+                        'field': xAixsTitle,
+                        'type': 'quantitative'
+                    }
                 },
                 width: 'container'
             }
@@ -90,12 +70,7 @@ class ImageBasedScatter {
          * google data table
          */
         this.googleDataTable = null;
-
-        /**
-         * is downloaded
-         */
-        this.isDownloaded = false;
-    };
+    }
 
     /**
      * render chart
@@ -103,24 +78,11 @@ class ImageBasedScatter {
      * @param {*} targetId render target id
      */
     render(rawData, targetId) {
+        this.option.vegaLite.data.values = rawData;
         let chartDiv = document.getElementById(targetId);
         let chart = new google.visualization.VegaChart(chartDiv);
         this.chart = chart;
         this.googleDataTable = new google.visualization.DataTable();
-
-        // calc min-max axis value for scale
-        let minMax = Common.calcMinMax2d(rawData, this.xAixsTitle, this.yAixsTitle);
-        if (minMax.key1.min >= 0) {
-            this.option.vegaLite.encoding.x.scale.domain = [minMax.key1.min - minMax.key1.min * 0.1, minMax.key1.max + minMax.key1.min * 0.1];
-        } else {
-            this.option.vegaLite.encoding.x.scale.domain = [minMax.key1.min + minMax.key1.min * 0.1, minMax.key1.max - minMax.key1.min * 0.1];
-        }
-        if (minMax.key2.min >= 0) {
-            this.option.vegaLite.encoding.y.scale.domain = [minMax.key2.min - minMax.key2.min * 0.1, minMax.key2.max + minMax.key2.min * 0.1];
-        } else {
-            this.option.vegaLite.encoding.y.scale.domain = [minMax.key2.min + minMax.key2.min * 0.1, minMax.key2.max - minMax.key2.min * 0.1];
-        }
-        this.option.vegaLite.data.values = rawData;
 
         // draw chart
         chart.draw(this.googleDataTable, this.option);
@@ -132,17 +94,17 @@ class ImageBasedScatter {
             exportButton.innerHTML = 'Export';
             exportButton.classList.remove('disabled');
             exportButton.addEventListener('click', () => {
-                ChartsUtils.exportSvgToPngForImageBasedChart(targetId, _this.title, _this.isDownloaded);
-                _this.isDownloaded = true;
+                ChartsUtils.exportSvgToPng(targetId, _this.title);
             });
         });
+
         return this;
-    };
+    }
 
     /**
      * re-render chart
      */
     reRender() {
         this.chart.draw(this.googleDataTable, this.option);
-    };
+    }
 }

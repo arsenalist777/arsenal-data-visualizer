@@ -17,31 +17,46 @@ class Heatmap {
                 data: {
                     values: []
                 },
-                mark: "rect",
+                mark: 'rect',
                 encoding: {
                     x: {
-                        "field": "",
-                        "type": "nominal"
+                        'field': '',
+                        'type': 'ordinal'
                     },
                     y: {
-                        "field": "",
-                        "type": "nominal",
-                        "sort": "descending"
+                        'field': '',
+                        'type': 'ordinal',
+                        'sort': 'descending'
                     },
                     fill: {
-                        "field": "",
-                        "type": "quantitative"
+                        'field': '',
+                        'type': 'quantitative'
                     },
                     stroke: {
-                        "value": null
+                        'value': null
                     }
                 },
                 config: {
-                    "view": { "step": 20 },
-                    "axis": { "grid": true, "tickBand": "extent" }
+                    'view': { 'step': 18 },
+                    'axis': { 'grid': true, 'tickBand': 'extent' }
                 }
             }
         };
+
+        /**
+         * title
+         */
+        this.title = title;
+
+        /**
+         * chart object
+         */
+        this.chart = null;
+
+        /**
+         * google data table
+         */
+        this.googleDataTable = null;
     }
 
     /**
@@ -53,16 +68,41 @@ class Heatmap {
     render(rawData, targetId) {
         let chartDiv = document.getElementById(targetId);
         let chart = new google.visualization.VegaChart(chartDiv);
+        this.chart = chart;
         this.option.vegaLite.encoding.x.field = rawData.field.x;
         this.option.vegaLite.encoding.y.field = rawData.field.y;
         this.option.vegaLite.encoding.fill.field = rawData.field.fill;
         this.option.vegaLite.data.values = rawData.data;
+        this.googleDataTable = new google.visualization.DataTable();
 
-        // create download link
-        ChartsUtils.createDownloadSvgLink(chart, targetId);
+        // draw chart
+        chart.draw(this.googleDataTable, this.option);
+        let exportButton = document.getElementById('export-' + targetId);
 
-        // process for google chart
-        chart.draw(new google.visualization.DataTable(), this.option);
+        let _this = this;
+        google.visualization.events.addListener(chart, 'ready', function () {
+
+            // modify legend
+            let svgNode = document.getElementById(targetId).firstChild;
+            let pathNode = svgNode.querySelectorAll('g.mark-rect.role-legend-gradient')[0].firstChild;
+            let fillAttr = pathNode.getAttribute('fill');
+            pathNode.setAttribute('fill', fillAttr.replace('##', '#'));
+
+            // add export button event
+            exportButton.innerHTML = 'Export';
+            exportButton.classList.remove('disabled');
+            exportButton.addEventListener('click', () => {
+                ChartsUtils.exportSvgToPngForHeatmap(targetId, _this.title);
+            });
+        });
+
         return this;
+    }
+
+    /**
+     * re-render chart
+     */
+    reRender() {
+        this.chart.draw(this.googleDataTable, this.option);
     }
 }

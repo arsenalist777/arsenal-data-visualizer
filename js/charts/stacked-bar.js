@@ -1,20 +1,17 @@
 /**
- * Image based scatter chart
+ * stacked bar chart
  */
-class ImageBasedScatter {
-
-    /**
-     * axis padding
-     */
-    axisPadding = 10;
+class StackedBar {
 
     /**
      * constructor
      * @param {String} title title
      * @param {String} xaixsTitle xAxis title
      * @param {String} yaixsTitle yAxis title
+     * @param {String} color color field
+     * @param {String} order order
      */
-    constructor(title, xAixsTitle, yAixsTitle) {
+    constructor(title, xAixsTitle, yAixsTitle, color, labelOrder) {
 
         /**
          * option for vegalite
@@ -26,41 +23,43 @@ class ImageBasedScatter {
                 data: {
                     values: []
                 },
-                mark: {
-                    type: 'image',
-                    width: 25,
-                    height: 25
-                },
+                mark: 'bar',
                 encoding: {
                     x: {
                         'field': xAixsTitle,
                         'type': 'quantitative',
-                        'scale': {
-                            'domain': []
-                        }
+                        'aggregate': 'sum'
                     },
                     y: {
                         'field': yAixsTitle,
-                        'type': 'quantitative',
-                        'scale': {
-                            'domain': []
-                        }
+                        'type': 'nominal',
+                        'sort': "-x"
                     },
-                    url: {
-                        'field': 'img',
-                        'type': 'nominal'
-                    },
-                    tooltip: [
-                        {
-                            'field': xAixsTitle,
-                            'type': 'quantitative'
-                        },
-                        {
-                            'field': yAixsTitle,
-                            'type': 'quantitative'
-                        },
-                    ]
+                    color: {
+                        'field': color,
+                        'type': 'ordinal',
 
+                        // label order
+                        'sort': {
+                            'field': labelOrder,
+                        },
+                        'scale': {
+                            'scheme': Const.CSS.SCHEMA
+                        }
+
+                    },
+                    order: {
+
+                        // stack order
+                        'field': labelOrder,
+                    },
+                    stroke: ChartsUtils.getStrokeSetting(),
+                    strokeWidth: ChartsUtils.getStrokeWidthSetting(),
+                    tooltip: {
+                        'field': xAixsTitle,
+                        'type': 'quantitative',
+                        'aggregate': 'sum'
+                    }
                 },
                 width: 'container'
             }
@@ -82,6 +81,16 @@ class ImageBasedScatter {
         this.yAixsTitle = yAixsTitle;
 
         /**
+         * color field
+         */
+        this.color = color;
+
+        /**
+         * label order
+         */
+        this.labelOrder = labelOrder;
+
+        /**
          * chart object
          */
         this.chart = null;
@@ -90,12 +99,7 @@ class ImageBasedScatter {
          * google data table
          */
         this.googleDataTable = null;
-
-        /**
-         * is downloaded
-         */
-        this.isDownloaded = false;
-    };
+    }
 
     /**
      * render chart
@@ -103,24 +107,11 @@ class ImageBasedScatter {
      * @param {*} targetId render target id
      */
     render(rawData, targetId) {
+        this.option.vegaLite.data.values = rawData;
         let chartDiv = document.getElementById(targetId);
         let chart = new google.visualization.VegaChart(chartDiv);
         this.chart = chart;
         this.googleDataTable = new google.visualization.DataTable();
-
-        // calc min-max axis value for scale
-        let minMax = Common.calcMinMax2d(rawData, this.xAixsTitle, this.yAixsTitle);
-        if (minMax.key1.min >= 0) {
-            this.option.vegaLite.encoding.x.scale.domain = [minMax.key1.min - minMax.key1.min * 0.1, minMax.key1.max + minMax.key1.min * 0.1];
-        } else {
-            this.option.vegaLite.encoding.x.scale.domain = [minMax.key1.min + minMax.key1.min * 0.1, minMax.key1.max - minMax.key1.min * 0.1];
-        }
-        if (minMax.key2.min >= 0) {
-            this.option.vegaLite.encoding.y.scale.domain = [minMax.key2.min - minMax.key2.min * 0.1, minMax.key2.max + minMax.key2.min * 0.1];
-        } else {
-            this.option.vegaLite.encoding.y.scale.domain = [minMax.key2.min + minMax.key2.min * 0.1, minMax.key2.max - minMax.key2.min * 0.1];
-        }
-        this.option.vegaLite.data.values = rawData;
 
         // draw chart
         chart.draw(this.googleDataTable, this.option);
@@ -129,20 +120,28 @@ class ImageBasedScatter {
         // add export button event
         let _this = this;
         google.visualization.events.addListener(chart, 'ready', function () {
+
+            // remove lengend symbol stroke
+            let legendSymbols = document.getElementById(targetId).querySelectorAll('.role-legend-symbol>path');
+            legendSymbols.forEach((symbol) => {
+                symbol.removeAttribute('stroke');
+            });
+
+            // add export button
             exportButton.innerHTML = 'Export';
             exportButton.classList.remove('disabled');
             exportButton.addEventListener('click', () => {
-                ChartsUtils.exportSvgToPngForImageBasedChart(targetId, _this.title, _this.isDownloaded);
-                _this.isDownloaded = true;
+                ChartsUtils.exportSvgToPng(targetId, _this.title);
             });
         });
+
         return this;
-    };
+    }
 
     /**
      * re-render chart
      */
     reRender() {
         this.chart.draw(this.googleDataTable, this.option);
-    };
+    }
 }

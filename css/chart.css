@@ -12,3 +12,8 @@
 .chart a {
     text-align: center;
 }
+
+div.container {
+    padding-right: 0em;
+    padding-left: 0em;
+}

@@ -4,6 +4,33 @@
 class ChartsUtils {
 
     /**
+     * return stroke setting as vega-lite option
+     * @returns {Object} option
+     */
+    static getStrokeSetting() {
+        return {
+            'condition': {
+                'test': Const.CHART_CONDITION.ARSENAL,
+                'value': Const.CSS.BAR_CHART_STROKE_SCHEMA
+            }
+        };
+    }
+
+    /**
+     * return strokeWidth setting as vega-lite option
+     * @returns {Object} option
+     */
+    static getStrokeWidthSetting() {
+        return {
+            'condition': {
+                'test': Const.CHART_CONDITION.ARSENAL,
+                'value': 1
+            },
+            'value': 0
+        };
+    }
+
+    /**
      * create downloadLink
      * @param {Object} chart google chart object
      * @param {String} targetId targetId
@@ -19,29 +46,28 @@ class ChartsUtils {
      * @param {Object} chart google chart object
      * @param {String} targetId targetId
      */
-    static createDownloadSvgLink(chart, targetId) {
-        google.visualization.events.addListener(chart, 'ready', function () {
-            let svgNode = document.getElementById(targetId).firstChild;
+    static exportSvgToPngForHeatmap(targetId, title) {
+        let svgNode = document.getElementById(targetId).firstChild;
 
-            // change gradient reference
-            let pathNode = svgNode.querySelectorAll('g.mark-rect.role-legend-gradient')[0].firstChild;
-            let gradientId = pathNode.getAttribute('fill').split('#')[1].slice(0, -1);
-            pathNode.setAttribute('fill', 'url(#' + gradientId + ')');
+        // change gradient reference
+        let pathNode = svgNode.querySelectorAll('g.mark-rect.role-legend-gradient')[0].firstChild;
+        let gradientId = pathNode.getAttribute('fill').split('#')[1].slice(0, -1);
+        pathNode.setAttribute('fill', 'url(#' + gradientId + ')');
 
-            // change svg to png
-            const svgText = new XMLSerializer().serializeToString(svgNode);
-            const svgDataUrl = 'data:image/svg+xml;charset=utf-8;base64,' + btoa(unescape(encodeURIComponent(svgText)));
-            let image = new Image();
-            image.onload = () => {
-                let canvas = document.createElement('canvas');
-                canvas.width = svgNode.width.baseVal.value;
-                canvas.height = svgNode.height.baseVal.value;
-                let context = canvas.getContext('2d');
-                context.drawImage(image, 0, 0);
-                ChartsUtils.setDataUrlOfCanvas(canvas, targetId);
-            };
-            image.src = svgDataUrl;
-        });
+        // change svg to png
+        this.downloadSvgAsPng(svgNode, title);
+    }
+
+    /**
+     * export svg as png
+     * @param {*} targetId targetId
+     * @param {*} title title
+     */
+    static exportSvgToPng(targetId, title) {
+
+        // download svg as png
+        let svgNode = document.getElementById(targetId).firstChild;
+        this.downloadSvgAsPng(svgNode, title);
     }
 
     /**
