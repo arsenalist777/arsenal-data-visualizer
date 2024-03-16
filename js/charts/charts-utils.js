@@ -133,7 +133,7 @@ class ChartsUtils {
         document.body.removeChild(a);
         URL.revokeObjectURL(svgUrl);
 
-
+        // TODO: fix download png
         // const svgDataUrl = 'data:image/svg+xml;charset=utf-8;base64,' + btoa(unescape(encodeURIComponent(svgText)));
         // let img = new Image();
         // img.onload = () => {
