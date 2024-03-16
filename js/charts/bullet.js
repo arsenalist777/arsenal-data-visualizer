@@ -61,7 +61,8 @@ class Bullet {
                     'tick': {
                         'tickness': 2
                     }
-                }
+                },
+                width: 'container'
             }
         };
 
