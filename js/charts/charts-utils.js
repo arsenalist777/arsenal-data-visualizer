@@ -120,22 +120,36 @@ class ChartsUtils {
      */
     static downloadSvgAsPng(svgNode, title) {
         const svgText = new XMLSerializer().serializeToString(svgNode);
-        const svgDataUrl = 'data:image/svg+xml;charset=utf-8;base64,' + btoa(unescape(encodeURIComponent(svgText)));
-        let img = new Image();
-        img.onload = () => {
-            let canvas = document.createElement('canvas');
-            canvas.width = svgNode.width.baseVal.value;
-            canvas.height = svgNode.height.baseVal.value;
-            let context = canvas.getContext('2d');
-            context.drawImage(img, 0, 0);
+        const svgBlob = new Blob([svgText], { type: 'image/svg+xml' });
+        const svgUrl = URL.createObjectURL(svgBlob);
 
-            const a = document.createElement('a');
-            a.href = canvas.toDataURL('image/png');
-            a.download = title + '.png';
-            document.body.appendChild(a);
-            a.click();
-        };
-        img.src = svgDataUrl;
+        const a = document.createElement('a');
+        a.href = svgUrl;
+        a.download = title + '.svg';
+
+        document.body.appendChild(a);
+        a.click();
+
+        document.body.removeChild(a);
+        URL.revokeObjectURL(svgUrl);
+
+
+        // const svgDataUrl = 'data:image/svg+xml;charset=utf-8;base64,' + btoa(unescape(encodeURIComponent(svgText)));
+        // let img = new Image();
+        // img.onload = () => {
+        //     let canvas = document.createElement('canvas');
+        //     canvas.width = svgNode.width.baseVal.value;
+        //     canvas.height = svgNode.height.baseVal.value;
+        //     let context = canvas.getContext('2d');
+        //     context.drawImage(img, 0, 0);
+
+        //     const a = document.createElement('a');
+        //     a.href = canvas.toDataURL('image/png');
+        //     a.download = title + '.png';
+        //     document.body.appendChild(a);
+        //     a.click();
+        // };
+        // img.src = svgDataUrl;
     }
 
     /**

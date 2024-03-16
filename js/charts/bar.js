@@ -91,6 +91,8 @@ class Bar {
         // add export button event
         let _this = this;
         google.visualization.events.addListener(chart, 'ready', function () {
+
+            // add export button event
             exportButton.innerHTML = 'Export';
             exportButton.classList.remove('disabled');
             exportButton.addEventListener('click', () => {
