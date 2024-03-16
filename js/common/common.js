@@ -9,6 +9,46 @@ class Common {
     static base64PlEmblemCache = {};
 
     /**
+     * glossary dialog 
+     */
+    static glossaryDialog = document.getElementById('glossary');
+    static glossaryContent = document.getElementById('glossary-content');
+    static glossaryDialogClose = document.getElementById('glossary-close');
+    static isOneceOpenGlossary = false;
+
+    /**
+     * show glossary dialog
+     * @param {*} chartId chart id
+     */
+    static showGlossary(chartId) {
+        this.glossaryDialog.style.display = 'block';
+        let contents = this.glossaryDialog.querySelectorAll('p');
+        if (contents.length > 0) {
+            contents.forEach(content => {
+                content.remove();
+            });
+        }
+        let glossaryContentKeys = Const.GLOSSARY[chartId];
+        if (glossaryContentKeys) {
+            glossaryContentKeys.forEach(key => {
+                this.glossaryContent.insertAdjacentHTML('beforeend', Const.GLOSSARY_CONTENT[key]);
+            });
+        }
+
+        this.isOneceOpenGlossary = true;
+        if (this.isOneceOpenGlossary) {
+            this.glossaryDialogClose.addEventListener('click', () => {
+                this.glossaryDialog.style.display = 'none';
+            });
+            window.addEventListener('click', (e) => {
+                if (e.target == this.glossaryDialog) {
+                    this.glossaryDialog.style.display = 'none';
+                }
+            });
+        }
+    };
+
+    /**
      * set base64 emblem image cache
      * @param {Stirng} key image url 
      * @param {String} value base64

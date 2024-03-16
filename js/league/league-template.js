@@ -12,9 +12,11 @@ class LeagueTemplate {
                 return;
             }
             this.createShootingChart();
+            this.createExpectedGoalsForChart();
             this.createPassingChart();
             this.createGoalAndShotCreationChart();
             this.createPossessionChart();
+            this.createTeamSequenceStypeChart();
             clearInterval(sleep);
         }, 1000);
     }
@@ -31,6 +33,13 @@ class LeagueTemplate {
      * create shooting chart
      */
     createShootingChart() {
+        // override if you render
+    }
+
+    /**
+     * create expected goals for chart
+     */
+    createExpectedGoalsForChart() {
         // override if you render
     }
 

@@ -19,7 +19,7 @@ class StackedBar {
         this.option = {
             vegaLite: {
                 $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-                title: title + Const.DATA_REF,
+                title: title,
                 data: {
                     values: []
                 },

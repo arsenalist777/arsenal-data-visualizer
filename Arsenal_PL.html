@@ -24,8 +24,10 @@
 
     <!-- header -->
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-3 pt-1 pb-1" href="#"><span
-                class="icon-canon pt-1"></span>Arsenal</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-3 pt-1 pb-1" href="#">
+            <span class="icon-canon pt-1"></span>
+            Arsenal
+        </a>
         <!-- navigation -->
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
@@ -33,10 +35,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- dropdown -->
-        <select class="form-select form-select-sm w-auto me-4" id="season-select">
-            <option value="2023-24" selected>2023-24</option>
+        <select class="form-control form-control-dark form-select w-100" id="season-select">
+            <option value="2023-24" selected>2023-24 (choose season)</option>
             <option value="2022-23">2022-23</option>
         </select>
+        <div class="navbar-nav"></div>
     </header>
 
 
@@ -57,7 +60,8 @@
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
                                     <li><a href="#" class="link-dark rounded"><span class="icon-sword"></span>Attack</a>
                                     </li>
-                                    <li><a href="#" class="link-dark rounded"><span
+                                    <li><a href="#" class="link-dark rounded"
+                                            onclick="alert('Sorry. Comming soon...')"><span
                                                 class="icon-shield-checkered"></span>Defense</a></li>
                                 </ul>
                             </div>
@@ -81,11 +85,20 @@
                                         </button>
                                         <div class="collapse" id="player-fw-collapse">
                                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                                <li><a href="#" class="link-dark rounded">Gabriel Jesus</a></li>
-                                                <li><a href="#" class="link-dark rounded">Gabriel Maltinelli</a></li>
-                                                <li><a href="#" class="link-dark rounded">Eddie Nketiah</a></li>
-                                                <li><a href="#" class="link-dark rounded">Leandro Trossard</a></li>
-                                                <li><a href="#" class="link-dark rounded">Reiss Nelson</a>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Gabriel Jesus</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Gabriel Maltinelli</a>
+                                                </li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Eddie Nketiah</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Leandro Trossard</a>
+                                                </li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Reiss Nelson</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Bukayo Saka</a></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -99,15 +112,25 @@
                                         </button>
                                         <div class="collapse" id="player-mf-collapse">
                                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                                <li><a href="#" class="link-dark rounded">Thomas Partey</a></li>
-                                                <li><a href="#" class="link-dark rounded">Bukayo Saka</a></li>
-                                                <li><a href="#" class="link-dark rounded">Martin Ødegaard</a></li>
-                                                <li><a href="#" class="link-dark rounded">Emile Smith Rowe</a></li>
-                                                <li><a href="#" class="link-dark rounded">Jorginho</a></li>
-                                                <li><a href="#" class="link-dark rounded">Fabio Vieira</a></li>
-                                                <li><a href="#" class="link-dark rounded">Mohamed Elneny</a></li>
-                                                <li><a href="#" class="link-dark rounded">Granit Xhaka</a></li>
-
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Thomas Partey</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Martin Ødegaard</a>
+                                                </li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Emile Smith Rowe</a>
+                                                </li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Jorginho</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Fabio Vieira</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Mohamed Elneny</a>
+                                                </li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Kai Havertz</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Declan Rice</a></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -121,14 +144,27 @@
                                         </button>
                                         <div class="collapse" id="player-df-collapse">
                                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                                <li><a href="#" class="link-dark rounded">Kieran Tierney</a></li>
-                                                <li><a href="#" class="link-dark rounded">Ben White</a></li>
-                                                <li><a href="#" class="link-dark rounded">Gabriel Magalhaes</a></li>
-                                                <li><a href="#" class="link-dark rounded">William Saliba</a></li>
-                                                <li><a href="#" class="link-dark rounded">Jakub Kiwior</a></li>
-                                                <li><a href="#" class="link-dark rounded">Rob Holding</a></li>
-                                                <li><a href="#" class="link-dark rounded">Takehiro Tomiyasu</a></li>
-                                                <li><a href="#" class="link-dark rounded">Oleksandr Zinchenko</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Ben White</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Gabriel Magalhaes</a>
+                                                </li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">William Saliba</a>
+                                                </li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Jakub Kiwior</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Jurrien Timber</a>
+                                                </li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Takehiro Tomiyasu</a>
+                                                </li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Oleksandr
+                                                        Zinchenko</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Cedric Soares</a></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -142,14 +178,17 @@
                                         </button>
                                         <div class="collapse" id="player-gk-collapse">
                                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                                <li><a href="#" class="link-dark rounded">Aaron Ramsdale</a></li>
-                                                <li><a href="#" class="link-dark rounded">Matt Turner</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">David Raya</a></li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Aaron Ramsdale</a>
+                                                </li>
+                                                <li><a href="#" class="link-dark rounded"
+                                                        onclick="alert('Sorry. Comming soon...')">Karl Hein</a></li>
                                             </ul>
                                         </div>
                                     </li>
                                 </ul>
-
-
                             </div>
                         </li>
                         <li class="nav-item">
@@ -165,16 +204,30 @@
                                                 class="icon-info"></span>FBREF</a>
                                     </li>
                                     <li>
+                                        <a href="https://theanalyst.com/eu/2023/08/premier-league-stats-2023-24/"
+                                            class="link-dark rounded" target="_blank"><span
+                                                class="icon-info"></span>Opta</a>
+                                    </li>
+                                    <li>
                                         <a href="https://github.com/arsenalist777/arsenal-data-visualizer"
                                             class="link-dark rounded" target="_blank"><span
                                                 class="icon-github"></span>GitHub</a>
                                     </li>
+                                    <li>
+                                        <a href="https://twitter.com/ArsenaList777" class="link-dark rounded"
+                                            target="_blank"><span class="icon-x"></span>X</a>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </div>
             </nav>
+
+            <div id="glossary" class="modal">
+                <div id="glossary-content" class="modal-content">
+                    <span id="glossary-close" class="close">&times;</span>
+                </div>
+            </div>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             </main>
         </div>
@@ -192,10 +245,12 @@
     <script src="./js/charts/bullet.js"></script>
     <script src="./js/charts/heatmap.js"></script>
     <script src="./js/data/squad-shooting.js"></script>
+    <script src="./js/data/sp-expected.js"></script>
     <script src="./js/data/squad-passing.js"></script>
     <script src="./js/data/squad-goal-and-shot-creation.js"></script>
     <script src="./js/data/goal-logs.js"></script>
     <script src="./js/data/squad-possession.js"></script>
+    <script src="./js/data/team-sequence-styles.js"></script>
     <script src="./js/league/league-template.js"></script>
     <script src="./js/league/pl-attacking.js"></script>
     <script src="./js/controller/controller.js"></script>
