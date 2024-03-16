@@ -39,8 +39,7 @@ class Heatmap {
                 config: {
                     'view': { 'step': 18 },
                     'axis': { 'grid': true, 'tickBand': 'extent' }
-                },
-                width: 'container'
+                }
             }
         };
 
