@@ -51,7 +51,7 @@
 /* override bootstrap/dashboard.css */
 @media (max-width: 767.98px) {
   .sidebar {
-    top: 0rem;
+    top: 3rem;
   }
 }
 
@@ -108,5 +108,10 @@ span.icon-info {
 
 span.icon-github {
   content: url("../img/brand-github.svg");
+  padding-right: 0.5em;
+}
+
+span.icon-x {
+  content: url("../img/brand-x.svg");
   padding-right: 0.5em;
 }

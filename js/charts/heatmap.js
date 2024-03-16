@@ -13,7 +13,7 @@ class Heatmap {
             // option for vega lite
             vegaLite: {
                 $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-                title: title + Const.DATA_REF,
+                title: title,
                 data: {
                     values: []
                 },
@@ -87,6 +87,9 @@ class Heatmap {
             let pathNode = svgNode.querySelectorAll('g.mark-rect.role-legend-gradient')[0].firstChild;
             let fillAttr = pathNode.getAttribute('fill');
             pathNode.setAttribute('fill', fillAttr.replace('##', '#'));
+
+            // modify width
+            svgNode.setAttribute('width', '100%');
 
             // add export button event
             exportButton.innerHTML = 'Export';

@@ -3,8 +3,8 @@
  */
 class GoalLogs {
 
-    static ASSIST_POINT = 1;
-    static GCA1_POINT = 1;
+    static ASSIST_POINT = 3;
+    static GCA1_POINT = 2;
     static GCA2_POINT = 1;
     static EXCULDE_GCA_TYPE = ['Fouled'];
 
@@ -15,7 +15,7 @@ class GoalLogs {
      * @returns gca data for heatmap
      */
     static processData(data, season) {
-        let playerList = this.createPlayerList(season);
+        let playerList = GoalLogs.createPlayerList(season);
         Object.keys(data).map(key => {
 
             let scorer = data[key][Const.GOAL_LOGS.SCORER_COL];
@@ -42,26 +42,26 @@ class GoalLogs {
 
             // assist
             if (!Common.isBlank(assist) && Const.PLAYER_LIST[season].includes(scorer) && Const.PLAYER_LIST[season].includes(assist)) {
-                playerList[scorer][assist] = this.calcPoint(playerList[scorer][assist], this.ASSIST_POINT);
+                playerList[scorer][assist] = GoalLogs.calcPoint(playerList[scorer][assist], GoalLogs.ASSIST_POINT);
             }
 
             // gca1
-            if (!Common.isBlank(assist) && !Common.isBlank(gca1) && assist !== gca1 && !this.EXCULDE_GCA_TYPE.includes(gca1Type)
+            if (!Common.isBlank(assist) && !Common.isBlank(gca1) && assist !== gca1 && !GoalLogs.EXCULDE_GCA_TYPE.includes(gca1Type)
                 && Const.PLAYER_LIST[season].includes(assist) && Const.PLAYER_LIST[season].includes(gca1)) {
 
                 // when assist and gca1 are different player
-                playerList[assist][gca1] = this.calcPoint(playerList[assist][gca1], this.GCA1_POINT);
-            } else if (!Common.isBlank(gca1) && !this.EXCULDE_GCA_TYPE.includes(gca1Type)
+                playerList[assist][gca1] = GoalLogs.calcPoint(playerList[assist][gca1], GoalLogs.GCA1_POINT);
+            } else if (!Common.isBlank(gca1) && !GoalLogs.EXCULDE_GCA_TYPE.includes(gca1Type)
                 && Const.PLAYER_LIST[season].includes(scorer) && Const.PLAYER_LIST[season].includes(gca1)) {
 
                 // when scorer and gca1 are same player
-                playerList[scorer][gca1] = this.calcPoint(playerList[scorer][gca1], this.GCA1_POINT);
+                playerList[scorer][gca1] = GoalLogs.calcPoint(playerList[scorer][gca1], GoalLogs.GCA1_POINT);
             }
 
             // gca2
-            if (!Common.isBlank(gca1) && !Common.isBlank(gca2) && gca1 !== gca2 && !this.EXCULDE_GCA_TYPE.includes(gca2Type)
+            if (!Common.isBlank(gca1) && !Common.isBlank(gca2) && gca1 !== gca2 && !GoalLogs.EXCULDE_GCA_TYPE.includes(gca2Type)
                 && Const.PLAYER_LIST[season].includes(gca1) && Const.PLAYER_LIST[season].includes(gca2)) {
-                playerList[gca1][gca2] = this.calcPoint(playerList[gca1][gca2], this.GCA2_POINT);
+                playerList[gca1][gca2] = GoalLogs.calcPoint(playerList[gca1][gca2], GoalLogs.GCA2_POINT);
             }
         });
 
@@ -69,7 +69,7 @@ class GoalLogs {
             field: {
                 x: 'receiver',
                 y: 'supplier',
-                fill: 'weight'
+                fill: 'STR'
             },
             data: []
         };
@@ -78,7 +78,7 @@ class GoalLogs {
                 result.data.push({
                     receiver: receiver,
                     supplier: supplier,
-                    weight: playerList[receiver][supplier]
+                    STR: playerList[receiver][supplier]
                 });
             });
         });

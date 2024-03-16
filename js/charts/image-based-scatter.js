@@ -22,46 +22,77 @@ class ImageBasedScatter {
         this.option = {
             vegaLite: {
                 $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-                title: title + Const.DATA_REF,
+                title: title,
                 data: {
                     values: []
                 },
-                mark: {
-                    type: 'image',
-                    width: 25,
-                    height: 25
-                },
-                encoding: {
-                    x: {
-                        'field': xAixsTitle,
-                        'type': 'quantitative',
-                        'scale': {
-                            'domain': []
+                layer: [
+                    {
+                        mark: {
+                            type: 'image',
+                            width: 22.5,
+                            height: 22.5
+                        },
+                        encoding: {
+                            x: {
+                                'field': xAixsTitle,
+                                'type': 'quantitative',
+                                'scale': {
+                                    'domain': []
+                                }
+                            },
+                            y: {
+                                'field': yAixsTitle,
+                                'type': 'quantitative',
+                                'scale': {
+                                    'domain': []
+                                }
+                            },
+                            url: {
+                                'field': 'img',
+                                'type': 'nominal'
+                            },
+                            tooltip: [
+                                {
+                                    'field': xAixsTitle,
+                                    'type': 'quantitative'
+                                },
+                                {
+                                    'field': yAixsTitle,
+                                    'type': 'quantitative'
+                                },
+                            ]
                         }
                     },
-                    y: {
-                        'field': yAixsTitle,
-                        'type': 'quantitative',
-                        'scale': {
-                            'domain': []
+                    {
+                        mark: {
+                            type: 'rule',
+                            strokeDash: [2, 2]
+                        },
+                        encoding: {
+                            x: {
+                                'field': xAixsTitle,
+                                'type': 'quantitative',
+                                'aggregate': 'average',
+                                'title': xAixsTitle
+                            },
                         }
                     },
-                    url: {
-                        'field': 'img',
-                        'type': 'nominal'
-                    },
-                    tooltip: [
-                        {
-                            'field': xAixsTitle,
-                            'type': 'quantitative'
+                    {
+                        mark: {
+                            type: 'rule',
+                            strokeDash: [2, 2]
                         },
-                        {
-                            'field': yAixsTitle,
-                            'type': 'quantitative'
-                        },
-                    ]
-
-                },
+                        encoding: {
+                            y: {
+                                'field': yAixsTitle,
+                                'type': 'quantitative',
+                                'aggregate': 'average',
+                                'title': yAixsTitle
+                            },
+                        }
+                    }
+                ],
                 width: 'container'
             }
         };
@@ -111,14 +142,14 @@ class ImageBasedScatter {
         // calc min-max axis value for scale
         let minMax = Common.calcMinMax2d(rawData, this.xAixsTitle, this.yAixsTitle);
         if (minMax.key1.min >= 0) {
-            this.option.vegaLite.encoding.x.scale.domain = [minMax.key1.min - minMax.key1.min * 0.1, minMax.key1.max + minMax.key1.min * 0.1];
+            this.option.vegaLite.layer[0].encoding.x.scale.domain = [minMax.key1.min - minMax.key1.min * 0.1, minMax.key1.max + minMax.key1.min * 0.1];
         } else {
-            this.option.vegaLite.encoding.x.scale.domain = [minMax.key1.min + minMax.key1.min * 0.1, minMax.key1.max - minMax.key1.min * 0.1];
+            this.option.vegaLite.layer[0].encoding.x.scale.domain = [minMax.key1.min + minMax.key1.min * 0.1, minMax.key1.max - minMax.key1.min * 0.1];
         }
         if (minMax.key2.min >= 0) {
-            this.option.vegaLite.encoding.y.scale.domain = [minMax.key2.min - minMax.key2.min * 0.1, minMax.key2.max + minMax.key2.min * 0.1];
+            this.option.vegaLite.layer[0].encoding.y.scale.domain = [minMax.key2.min - minMax.key2.min * 0.1, minMax.key2.max + minMax.key2.min * 0.1];
         } else {
-            this.option.vegaLite.encoding.y.scale.domain = [minMax.key2.min + minMax.key2.min * 0.1, minMax.key2.max - minMax.key2.min * 0.1];
+            this.option.vegaLite.layer[0].encoding.y.scale.domain = [minMax.key2.min + minMax.key2.min * 0.1, minMax.key2.max - minMax.key2.min * 0.1];
         }
         this.option.vegaLite.data.values = rawData;
 

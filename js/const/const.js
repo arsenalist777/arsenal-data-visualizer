@@ -12,6 +12,7 @@
             + '<h2 class="h2">${title}</h2>'
             + '<div class="btn-toolbar mb-2 mb-md-0">'
             + '<div class="btn-group me-2">'
+            + '<div class="icon-help" onclick="Common.showGlossary(\'${chartId}\')"></div>'
             + '<button id="export-${chartId}" type="button" class="btn btn-sm btn-outline-secondary disabled">'
             + '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
             + 'Loading...'
@@ -39,6 +40,69 @@
             + '</div>',
 
         /**
+         * glossary
+         */
+        GLOSSARY_CONTENT: {
+            xG: '<p><b>xG(Expected Goals)</b><br>Expected Goals (xG) measures the quality of a shot based on several variables such as assist type, shot angle and distance from goal, whether it was a headed shot and whether it was defined as a big chance. Adding up a player or team\'s expected goals can give us an indication of how many goals a player or team should have scored on average, given the shots they have taken.</p>',
+            SP: '<p><b>SP(Set Play)</b><br>Chances occuring as a result of a corner, direct free kick, indirect free kick or throw-in. There is no data about 2022-23 season.</p>',
+            xA: '<p><b>xA(Expected Assists)</b><br>The likelihood each completed pass becomes a goal assists given the pass type, phase of play, location and distance. Provided by Opta. Minimum 30 minutes played per squad game to qualify as a leader.</p>',
+            xAG: '<p><b>xAG(Expected Assisted Goals)</b><br>xG which follows a pass that assists a shot.',
+            progressive: '<p><b>Progressive Passes</b><br>Completed passes that move the ball towards the opponent\'s goal line at least 10 yards from its furthest point in the last six passes, or any completed pass into the penalty area. Excludes passes from the defending 40% of the pitch.</p>',
+            short: '<p><b>Short Passes</b><br>Passes between 5 and 15 yards.</p>',
+            medium: '<p><b>Medium Passes</b><br>Passes between 15 and 30 yards.</p>',
+            long: '<p><b>Long Passes</b><br>Passes longer than 30 yards.</p>',
+            cmp: '<p><b>Cmp(Pass Completion)</b><br>Pass Completion.</p>',
+            keyPass: '<p><b>Key Passes</b><br>Passes that directly lead to a shot (assisted shots).</p>',
+            final3rd: '<p><b>Passes into Final Third</b><br>Completed passes that enter the 1/3 of the pitch closest to the goal. Not including set pieces.</p>',
+            passPenArea: '<p><b>Passes into the Penalty Area</b><br>Completed passes into the 18-yard box. Not including set pieces.</p>',
+            crossPenArea: '<p><b>Crosses into the Penalty Area</b><br>Completed crosses into the 18-yard box. Not including set pieces.</p>',
+            sca: '<p><b>SCA(Shot Creating Actions)</b><br>The two offensive actions directly leading to a shot, such as passes, take-ons and drawing fouls. Note: A single player can receive credit for multiple actions and the shot-taker can also receive credit.</p>',
+            gca: '<p><b>GCA(Goal Creating Actions)</b><br>The two offensive actions directly leading to a goal, such as passes, take-ons and drawing fouls. Note: A single player can receive credit for multiple actions and the goal-scorer can also receive credit.</p>',
+            gca1: '<p><b>GCA1</b><br>The first offensive action leading directly to a shot, such as passes, take-ons, and drawing fouls. Note: A single player can receive credit for multiple actions and the shot-taker can also receive credit.</p>',
+            gca2: '<p><b>GCA2</b><br>The second offensive action leading directly to a shot, such as passes, take-ons, and drawing fouls. Note: A single player can receive credit for multiple actions and the shot-taker can also receive credit.</p>',
+            str: '<p><b>STR(Strength)</b><br>This indicates the strength of GCA between players. Weighted addition is performed in the order of assists, GCA1, and GCA2. If assists and GCA1 are from the same player, assists take priority.</p>',
+            touches: '<p><b>Touches</b><br>Number of times a player touched the ball. Note: Receiving a pass, then dribbling, then sending a pass counts as one touch.</p>',
+            takeOns: '<p><b>Successful Take-Ons</b><br>Number of defenders taken on successfully, by dribbling past them. Unsuccessful take-ons include attempts where the dribbler retained possession but was unable to get past the defender</p>',
+            carries: '<p><b>Carries</b><br>Number of times the player controlled the ball with their feet.</p>',
+            prgCarries: '<p><b>Progressive Carries</b><br>Carries that move the ball towards the opponent\'s goal line at least 10 yards from its furthest point in the last six passes, or any carry into the penalty area.Excludes carries which end in the defending 50% of the pitch.</p>',
+            carriesFinal3rd: '<p><b>Carries into Final Third</b><br>Carries that enter the 1/3 of the pitch closest to the goal.</p>',
+            carriesPenArea: '<p><b>Carries into the Penalty Area</b><br>Carries into the 18-yard box.</p>',
+            sequence: '<p><b>Sequence</b><br>Sequences are defined as passages of play which belong to one team and are ended by defensive actions, stoppages in play or a shot. There is no data about 2022-23 season.</p>',
+            sequenceTime: '<p><b>Sequence Time</b><br>The average time (in seconds) per sequence.</p>',
+            dilectSpeed: '<p><b>Dilect Speed</b><br>A measure of how quickly a team progresses the ball upfield (metres/second).</p>',
+            buildUpAttacks: '<p><b>Build-Up Attacks</b><br>The number of open play sequences that contains 10 or more passes and either ends in a shot or has at least one touch in the box.</p>',
+            directAttacks: '<p><b>Direct Attacks</b><br>The number of open play sequences that starts just inside the team\'s own half and has at least 50% of movement towards the opposition\'s goal and ends in a shot or a touch in the opposition box.</p> '
+        },
+
+        /**
+         * glossary keys for each chart
+         */
+        GLOSSARY: {
+            'shots-xG-tier': ['xG'],
+            'xG-G-xG-tier': ['xG'],
+            'spshots-spxG-tier': ['xG', 'SP'],
+            'spxG-G-xG-tier': ['xG', 'SP'],
+            'xA-A-xAG-tier': ['xA', 'xAG'],
+            'att-progressive-tier': ['progressive'],
+            'passing-att': ['short', 'medium', 'long'],
+            'passing-att-cmp': ['short', 'medium', 'long', 'cmp'],
+            'key-pass': ['keyPass'],
+            'passing-final-third': ['final3rd'],
+            'passing-pen-area': ['passPenArea'],
+            'cross-pen-area': ['crossPenArea'],
+            'sca-type': ['sca'],
+            'gca-type': ['gca'],
+            'gca-network': ['gca', 'gca1', 'gca2', 'str'],
+            'touches': ['touches'],
+            'take-ons-tier': ['takeOns'],
+            'carries-prgCarries-tier': ['carries', 'prgCarries'],
+            'carries-intoFinal3rd-tier': ['carries', 'carriesFinal3rd'],
+            'carries-intoPenArea-tier': ['carries', 'carriesPenArea'],
+            'sequence-time': ['sequence', 'sequenceTime', 'dilectSpeed'],
+            'sequence-style': ['sequence', 'buildUpAttacks', 'directAttacks']
+        },
+
+        /**
          * image urls
          */
         IMG_URL: {
@@ -47,6 +111,7 @@
             Bournemouth: './img/bournemouth.png',
             Brentford: './img/brentford.png',
             Brighton: './img/brighton.png',
+            'Brighton and Hove Albion': './img/brighton.png',
             Burnley: './img/burnley.png',
             Chelsea: './img/chelsea.png',
             'Crystal Palace': './img/crystal-palace.png',
@@ -58,13 +123,20 @@
             'Luton Town': './img/luton-town.png',
             'Manchester City': './img/manchester-city.png',
             'Manchester Utd': './img/manchester-united.png',
+            'Manchester United': './img/manchester-united.png',
             'Newcastle Utd': './img/newcastle.png',
+            'Newcastle United': './img/newcastle.png',
             'Nott\'ham Forest': './img/nottingham-forest.png',
+            'Nottingham Forest': './img/nottingham-forest.png',
             'Sheffield Utd': './img/sheffield-united.png',
+            'Sheffield United': './img/sheffield-united.png',
             Southampton: './img/southampton.png',
+            'Tottenham Hotspur': './img/tottenham.png',
             Tottenham: './img/tottenham.png',
             'West Ham': './img/west-ham.png',
+            'West Ham United': './img/west-ham.png',
             Wolves: './img/wolves.png',
+            'Wolverhampton Wanderers': './img/wolves.png'
         },
 
         /**
@@ -72,6 +144,17 @@
          */
         CHART_CONDITION: {
             ARSENAL: 'datum["squad"] === "Arsenal"',
+        },
+
+        /**
+         * for expected goals for
+         */
+        EXPECTED_GAOLS_FOR: {
+            SQUAD_COL: 1,
+            SP_SHOTS_COL: 6,
+            SP_XG_COL: 7,
+            SP_GOALS_COL: 8,
+            SHEET_NAME: 'Expected Goals For'
         },
 
         /**
@@ -159,6 +242,18 @@
         },
 
         /**
+         * team sequence styles
+         */
+        TEAM_SEQUENCE_STYLES: {
+            SQUAD_COL: 1,
+            SEQUENCE_TIME_COL: 2,
+            DILECT_SPEED_COL: 4,
+            BUILD_UP_ATTACKS_COL: 6,
+            DIRECT_ATTACKS_COL: 7,
+            SHEET_NAME: 'Team Sequence Styles'
+        },
+
+        /**
          * for expected
          */
         EXPECTED: {
@@ -227,6 +322,9 @@
             SHEET_NAME: 'Defensive Actions'
         },
 
+
+
+
         /**
          * css option
          */
@@ -263,8 +361,10 @@
                 'Takehiro Tomiyasu',
                 'Oleksandr Zinchenko',
                 'Jurrien Timber',
+                'Cedric Soares',
                 'Aaron Ramsdale',
-                'David Raya'
+                'David Raya',
+                'karl Hein'
             ],
             '2022-23': [
                 'Gabriel Jesus',
@@ -288,8 +388,10 @@
                 'Rob Holding',
                 'Takehiro Tomiyasu',
                 'Oleksandr Zinchenko',
+                'Cedric Soares',
                 'Aaron Ramsdale',
-                'Matt Turner'
+                'Matt Turner',
+                'karl Hein'
             ]
         },
 
@@ -417,6 +519,7 @@
         FILTER_MIN: 30,
         FULLTIME_MIN: 90,
         AXIS_RATE: 'rate',
-        DATA_REF: ' (Data: FBREF)'
+        DATA_REF_FBREF: ' (Data: FBREF)',
+        DATA_REF_OPTA: ' (Data: Opta)'
     };
 })();
