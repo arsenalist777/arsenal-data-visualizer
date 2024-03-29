@@ -1,22 +1,27 @@
 /**
  * League Template
  */
-class LeagueTemplate {
+class LeagueTemplate extends Template {
 
     /**
-     * create template charts.
+     * create template chart(Override)
      */
     createCharts() {
         let sleep = setInterval(() => {
             if (!this.isLoadComplated()) {
                 return;
             }
+
+            // for attack stats
             this.createShootingChart();
             this.createExpectedGoalsForChart();
             this.createPassingChart();
             this.createGoalAndShotCreationChart();
             this.createPossessionChart();
             this.createTeamSequenceStypeChart();
+
+            // for defense stats
+            this.createExpectedGoalsAgainstChart();
             clearInterval(sleep);
         }, 1000);
     }
@@ -65,15 +70,16 @@ class LeagueTemplate {
     }
 
     /**
-     * create spread sheet url
-     * 
-     * @param {*} spreadsheetId spreadsheet id 
-     * @param {*} season season
-     * @param {*} sheetName sheet name
-     * @returns 
+     * create team sequence stype chart
      */
-    createUrls(spreadsheetId, season, sheetName) {
-        let url = [spreadsheetId, "'" + season + ' ' + sheetName + "'"];
-        return url;
+    createTeamSequenceStypeChart() {
+        // override if you render
+    }
+
+    /**
+     * create expected goals against chart
+     */
+    createExpectedGoalsAgainstChart() {
+        // override if you render
     }
 }
