@@ -71,13 +71,16 @@
             sequenceTime: '<p><b>Sequence Time</b><br>The average time (in seconds) per sequence.</p>',
             dilectSpeed: '<p><b>Dilect Speed</b><br>A measure of how quickly a team progresses the ball upfield (metres/second).</p>',
             buildUpAttacks: '<p><b>Build-Up Attacks</b><br>The number of open play sequences that contains 10 or more passes and either ends in a shot or has at least one touch in the box.</p>',
-            directAttacks: '<p><b>Direct Attacks</b><br>The number of open play sequences that starts just inside the team\'s own half and has at least 50% of movement towards the opposition\'s goal and ends in a shot or a touch in the opposition box.</p> '
+            directAttacks: '<p><b>Direct Attacks</b><br>The number of open play sequences that starts just inside the team\'s own half and has at least 50% of movement towards the opposition\'s goal and ends in a shot or a touch in the opposition box.</p> ',
+            xGAgainst: '<p><b>xG(Expected Goals)</b><br>Expected Goals (xG) measures the quality of a shot based on several variables such as assist type, shot angle and distance from goal, whether it was a headed shot and whether it was defined as a big chance. Adding up a player or team\'s expected goals can give us an indication of how many goals a player or team should have scored on average, given the shots they have taken. There is no data about 2022-23 season.</p>'
         },
 
         /**
          * glossary keys for each chart
          */
         GLOSSARY: {
+
+            // attacking
             'shots-xG-tier': ['xG'],
             'xG-G-xG-tier': ['xG'],
             'spshots-spxG-tier': ['xG', 'SP'],
@@ -99,7 +102,10 @@
             'carries-intoFinal3rd-tier': ['carries', 'carriesFinal3rd'],
             'carries-intoPenArea-tier': ['carries', 'carriesPenArea'],
             'sequence-time': ['sequence', 'sequenceTime', 'dilectSpeed'],
-            'sequence-style': ['sequence', 'buildUpAttacks', 'directAttacks']
+            'sequence-style': ['sequence', 'buildUpAttacks', 'directAttacks'],
+
+            // defending
+            'shots-xG-against-tier': ['xGAgainst'],
         },
 
         /**
@@ -155,6 +161,20 @@
             SP_XG_COL: 7,
             SP_GOALS_COL: 8,
             SHEET_NAME: 'Expected Goals For'
+        },
+
+        /**
+         * for expected goals against
+         */
+        EXPECTED_GAOLS_AGAINST: {
+            SQUAD_COL: 1,
+            OP_SHOTS_COL: 3,
+            OP_XG_COL: 4,
+            OP_GOALS_COL: 5,
+            SP_SHOTS_COL: 6,
+            SP_XG_COL: 7,
+            SP_GOALS_COL: 8,
+            SHEET_NAME: 'Expected Goals Against'
         },
 
         /**

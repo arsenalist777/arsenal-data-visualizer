@@ -212,10 +212,9 @@ class PlAttacking extends LeagueTemplate {
     }
 
     /**
-     * create PL Attacking data
-     * @param {*} isRendering rendering chart flag
+     * create PL Attacking data(Override)
      */
-    createPlAttackingData(isRendering) {
+    createData() {
 
         // load spreadsheet shooting
         let url = super.createUrls(this.spreadsheetId, this.season, Const.SQUAD_SHOOTING.SHEET_NAME);
@@ -245,10 +244,7 @@ class PlAttacking extends LeagueTemplate {
         url = super.createUrls(this.spreadsheetId, this.season, Const.TEAM_SEQUENCE_STYLES.SHEET_NAME);
         this.loadSpreadSheet(url, 'teamSequenceStylesData', 2, TeamSequenceStyles.processData);
 
-        if (isRendering) {
-
-            this.renderCharts();
-        }
+        this.renderCharts();
     };
 
     /**
