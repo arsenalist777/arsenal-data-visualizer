@@ -7,6 +7,10 @@ class PlDefending extends LeagueTemplate {
     shotsXGAgainstId = 'shots-xG-against-tier';
     spShotsXGAgainstTitle = 'SP shots/xG Against Tier';
     spShotsXGAgainstId = 'spshots-xG-against-tier';
+    xGGxGAgainstTitle = 'xG/G-xG Against Tier';
+    xGGxGAgainstId = 'xG-G-xG-against-tier';
+    spXGGxGAgainstTitle = 'SP xG/G-xG Against Tier';
+    spXGGxGAgainstId = 'spxG-G-xG-against-tier';
     /*
     xGGxGTitle = 'xG/G-xG Tier';
     xGGxGId = 'xG-G-xG-tier';
@@ -100,6 +104,14 @@ class PlDefending extends LeagueTemplate {
                 title: this.spShotsXGAgainstTitle,
                 chartId: this.spShotsXGAgainstId
             },
+            {
+                title: this.xGGxGAgainstTitle,
+                chartId: this.xGGxGAgainstId
+            },
+            {
+                title: this.spXGGxGAgainstTitle,
+                chartId: this.spXGGxGAgainstId
+            }
         ], false);
 
         /*
@@ -251,6 +263,8 @@ class PlDefending extends LeagueTemplate {
         }
         new ImageBasedScatter(this.shotsXGAgainstTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'shots', 'xg').render(this.expectedAgainstData['shots_xg'], this.shotsXGAgainstId);
         new ImageBasedScatter(this.spShotsXGAgainstTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'spShots', 'spxG').render(this.expectedAgainstData['spshots_spxG'], this.spShotsXGAgainstId);
+        new ImageBasedScatter(this.xGGxGAgainstTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'xG', 'G-xG').render(this.expectedAgainstData['xG_G-xG'], this.xGGxGAgainstId);
+        new ImageBasedScatter(this.spXGGxGAgainstTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'spxG', 'spG-spxG').render(this.expectedAgainstData['spxG_spG-spxG'], this.spXGGxGAgainstId);
     };
 
     /**
