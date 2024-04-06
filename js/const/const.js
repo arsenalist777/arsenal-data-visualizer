@@ -106,6 +106,7 @@
 
             // defending
             'shots-xG-against-tier': ['xGAgainst'],
+            'spshots-xG-against-tier': ['xGAgainst', 'SP'],
         },
 
         /**
