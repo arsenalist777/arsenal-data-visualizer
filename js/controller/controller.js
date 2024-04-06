@@ -28,7 +28,7 @@ class Controller {
 
     /**
      * main method
-     * @param {*} season 
+     * @param {String} season 
      */
     static main(season) {
         Controller.season = season;
@@ -43,6 +43,12 @@ class Controller {
         });
     };
 
+    /**
+     * get statistic instance by reflection
+     * @param {String} name statistic name
+     * @param {String} season season
+     * @returns instance
+     */
     static getStatisticInstance(name, season) {
         let instance = Controller.cache[name + season];
         if (!instance) {

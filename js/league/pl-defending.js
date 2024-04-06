@@ -5,6 +5,8 @@ class PlDefending extends LeagueTemplate {
 
     shotsXGAgainstTitle = 'shots/xG Against Tier';
     shotsXGAgainstId = 'shots-xG-against-tier';
+    spShotsXGAgainstTitle = 'SP shots/xG Against Tier';
+    spShotsXGAgainstId = 'spshots-xG-against-tier';
     /*
     xGGxGTitle = 'xG/G-xG Tier';
     xGGxGId = 'xG-G-xG-tier';
@@ -93,7 +95,11 @@ class PlDefending extends LeagueTemplate {
             {
                 title: this.shotsXGAgainstTitle,
                 chartId: this.shotsXGAgainstId
-            }
+            },
+            {
+                title: this.spShotsXGAgainstTitle,
+                chartId: this.spShotsXGAgainstId
+            },
         ], false);
 
         /*
@@ -244,6 +250,7 @@ class PlDefending extends LeagueTemplate {
             return;
         }
         new ImageBasedScatter(this.shotsXGAgainstTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'shots', 'xg').render(this.expectedAgainstData['shots_xg'], this.shotsXGAgainstId);
+        new ImageBasedScatter(this.spShotsXGAgainstTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'spShots', 'spxG').render(this.expectedAgainstData['spshots_spxG'], this.spShotsXGAgainstId);
     };
 
     /**
