@@ -330,7 +330,7 @@ class PlAttacking extends LeagueTemplate {
     /**
      * create sequence style chart(Override)
      */
-    createTeamSequenceStypeChart() {
+    createTeamSequenceStylesChart() {
 
         // create sequence style chart
         if (this.teamSequenceStylesData['isNoData']) {

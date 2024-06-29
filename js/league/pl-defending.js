@@ -11,6 +11,12 @@ class PlDefending extends LeagueTemplate {
     xGGxGAgainstId = 'xG-G-xG-against-tier';
     spXGGxGAgainstTitle = 'SP xG/G-xG Against Tier';
     spXGGxGAgainstId = 'spxG-G-xG-against-tier';
+    shotEndingHighTurnoversTitle = 'Shot Ending High Turnovers Tier';
+    shotEndingHighTrunoversId = 'shot-ending-high-turnovers-tier';
+    goalEndingHighTurnoversTitle = 'Goal Ending High Turnovers Tier';
+    goalEndingHighTurnoversId = 'goal-ending-high-turnovers-tier';
+    ppdaTitle = 'PPDA';
+    ppdaId = 'ppda';
     /*
     xGGxGTitle = 'xG/G-xG Tier';
     xGGxGId = 'xG-G-xG-tier';
@@ -66,6 +72,7 @@ class PlDefending extends LeagueTemplate {
         this.spreadsheetId = '1FO5NjJF0LnJo2d2VsCuKYRghD4QWvCOg2a0Yrya0JAo';
         this.season = season;
         this.expectedAgainstData = {};
+        this.teamSequencePressuresData = {};
 
         //this.squadShootingData = {};
         //this.squadPassingData = {};
@@ -82,7 +89,7 @@ class PlDefending extends LeagueTemplate {
     isLoadComplated() {
         // if (Object.keys(this.squadShootingData).length === 0 && Object.keys(this.spExpectedData).length === 0 && Object.keys(this.squadPassingData).length === 0
         //     && Object.keys(this.squadGoalAndShotCreationData).length === 0 && Object.keys(this.goalLogsData).length === 0 && Object.keys(this.squadPossessionData).length === 0 && Object.keys(this.teamSequenceStylesData).length === 0) {
-        if (Object.keys(this.expectedAgainstData).length === 0) {
+        if (Object.keys(this.expectedAgainstData).length === 0 && Object.keys(this.teamSequencePressuresData).length === 0) {
 
             // doesn't finish loading data
             return false;
@@ -111,6 +118,18 @@ class PlDefending extends LeagueTemplate {
             {
                 title: this.spXGGxGAgainstTitle,
                 chartId: this.spXGGxGAgainstId
+            },
+            {
+                title: this.shotEndingHighTurnoversTitle,
+                chartId: this.shotEndingHighTrunoversId
+            },
+            {
+                title: this.goalEndingHighTurnoversTitle,
+                chartId: this.goalEndingHighTurnoversId
+            },
+            {
+                title: this.ppdaTitle,
+                chartId: this.ppdaId
             }
         ], false);
 
@@ -224,6 +243,10 @@ class PlDefending extends LeagueTemplate {
         let url = super.createUrls(this.spreadsheetId, this.season, Const.EXPECTED_GAOLS_AGAINST.SHEET_NAME);
         this.loadSpreadSheet(url, 'expectedAgainstData', 2, ExpectedAgainst.processData);
 
+        // load spreadsheet team sequence pressures
+        url = super.createUrls(this.spreadsheetId, this.season, Const.TEAM_SEQUENCE_PRESSURES.SHEET_NAME);
+        this.loadSpreadSheet(url, 'teamSequencePressuresData', 2, TeamSequencePressures.processData);
+
 
         // // load spreadsheet shooting
         // let url = super.createUrls(this.spreadsheetId, this.season, Const.SQUAD_SHOOTING.SHEET_NAME);
@@ -266,6 +289,17 @@ class PlDefending extends LeagueTemplate {
         new ImageBasedScatter(this.xGGxGAgainstTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'xG', 'G-xG').render(this.expectedAgainstData['xG_G-xG'], this.xGGxGAgainstId);
         new ImageBasedScatter(this.spXGGxGAgainstTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'spxG', 'spG-spxG').render(this.expectedAgainstData['spxG_spG-spxG'], this.spXGGxGAgainstId);
     };
+
+    createTeamSequencePressuresChart() {
+
+        // create team sequence pressures chart
+        if (this.teamSequencePressuresData['isNoData']) {
+            return;
+        }
+        new ImageBasedScatter(this.shotEndingHighTurnoversTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'high turnovers', 'shot ending high turnovers').render(this.teamSequencePressuresData['shotEndingHighTurnOvers'], this.shotEndingHighTrunoversId);
+        new ImageBasedScatter(this.goalEndingHighTurnoversTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'high turnovers', 'goal ending high turnovers').render(this.teamSequencePressuresData['goalEndingHighTurnOvers'], this.goalEndingHighTurnoversId);
+        new Bar(this.ppdaTitle + ' ' + this.season + Const.DATA_REF_OPTA, 'ppda', 'squad', true).render(this.teamSequencePressuresData['ppda'], this.ppdaId);
+    }
 
     /**
      * create shooting chart(Override)
