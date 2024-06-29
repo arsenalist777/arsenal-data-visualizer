@@ -72,7 +72,11 @@
             dilectSpeed: '<p><b>Dilect Speed</b><br>A measure of how quickly a team progresses the ball upfield (metres/second).</p>',
             buildUpAttacks: '<p><b>Build-Up Attacks</b><br>The number of open play sequences that contains 10 or more passes and either ends in a shot or has at least one touch in the box.</p>',
             directAttacks: '<p><b>Direct Attacks</b><br>The number of open play sequences that starts just inside the team\'s own half and has at least 50% of movement towards the opposition\'s goal and ends in a shot or a touch in the opposition box.</p> ',
-            xGAgainst: '<p><b>xG(Expected Goals)</b><br>Expected Goals (xG) measures the quality of a shot based on several variables such as assist type, shot angle and distance from goal, whether it was a headed shot and whether it was defined as a big chance. Adding up a player or team\'s expected goals can give us an indication of how many goals a player or team should have scored on average, given the shots they have taken. There is no data about 2022-23 season.</p>'
+            xGAgainst: '<p><b>xG(Expected Goals)</b><br>Expected Goals (xG) measures the quality of a shot based on several variables such as assist type, shot angle and distance from goal, whether it was a headed shot and whether it was defined as a big chance. Adding up a player or team\'s expected goals can give us an indication of how many goals a player or team should have scored on average, given the shots they have taken. There is no data about 2022-23 season.</p>',
+            highTurnOvers: '<p><b>High Turnovers</b><br>The number of sequences that start in open play and begin 40m or less from the opponent\'s goal. There is no data about 2022-23 season.</p>',
+            shotEndingHighTruenOvers: '<p><b>Shot Ending High Turnovers</b><br>The number of shot-ending sequences that start in open play and begin 40m or less from the opponent\'s goal. There is no data about 2022-23 season.</p>',
+            goalEndingHighTurnOvers: '<p><b>Goal Ending High Turnovers</b><br>The number of goal-ending sequences that start in open play and begin 40m or less from the opponent\'s goal. There is no data about 2022-23 season.</p>',
+            ppda: '<p><b>PPDA</b><br>PPDA is the number of opposition passes allowed outside of the pressing team\'s own defensive third, divided by the number of defensive actions by the pressing team outside of their own defensive third. A lower figure indicates a higher level of pressing, while a higher figure indicates a lower level of pressing. There is no data about 2022-23 season.</p>',
         },
 
         /**
@@ -109,6 +113,9 @@
             'spshots-xG-against-tier': ['xGAgainst', 'SP'],
             'xG-G-xG-against-tier': ['xGAgainst'],
             'spxG-G-xG-against-tier': ['xGAgainst', 'SP'],
+            'shot-ending-high-turnovers-tier': ['highTurnOvers', 'shotEndingHighTruenOvers'],
+            'goal-ending-high-turnovers-tier': ['highTurnOvers', 'goalEndingHighTurnOvers'],
+            'ppda': ['ppda']
         },
 
         /**
@@ -276,6 +283,17 @@
             SHEET_NAME: 'Team Sequence Styles'
         },
 
+        /**
+         * team sequence pressures
+         */
+        TEAM_SEQUENCE_PRESSURES: {
+            SQUAD_COL: 1,
+            PPDA_COL: 2,
+            HIGH_TURNOVER_TOTAL_COL: 3,
+            SHOT_ENDING_COL: 4,
+            GOAL_ENDING_COL: 5,
+            SHEET_NAME: 'Team Sequence Pressures'
+        },
         /**
          * for expected
          */

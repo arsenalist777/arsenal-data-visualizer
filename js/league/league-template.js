@@ -18,10 +18,11 @@ class LeagueTemplate extends Template {
             this.createPassingChart();
             this.createGoalAndShotCreationChart();
             this.createPossessionChart();
-            this.createTeamSequenceStypeChart();
+            this.createTeamSequenceStylesChart();
 
             // for defense stats
             this.createExpectedGoalsAgainstChart();
+            this.createTeamSequencePressuresChart();
             clearInterval(sleep);
         }, 1000);
     }
@@ -70,9 +71,9 @@ class LeagueTemplate extends Template {
     }
 
     /**
-     * create team sequence stype chart
+     * create team sequence style chart
      */
-    createTeamSequenceStypeChart() {
+    createTeamSequenceStylesChart() {
         // override if you render
     }
 
@@ -80,6 +81,13 @@ class LeagueTemplate extends Template {
      * create expected goals against chart
      */
     createExpectedGoalsAgainstChart() {
+        // override if you render
+    }
+
+    /**
+     * create team sequence pressures chart
+     */
+    createTeamSequencePressuresChart() {
         // override if you render
     }
 }

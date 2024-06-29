@@ -8,8 +8,14 @@ class Bar {
      * @param {String} title title
      * @param {String} xaixsTitle xAxis title
      * @param {String} yaixsTitle yAxis title
+     * @param {Boolean} isAsc is ascending order
      */
-    constructor(title, xAixsTitle, yAixsTitle) {
+    constructor(title, xAixsTitle, yAixsTitle, isAsc) {
+
+        let order = '-x';
+        if (isAsc) {
+            order = 'x';
+        }
 
         /**
          * option for vegalite
@@ -30,7 +36,7 @@ class Bar {
                     y: {
                         'field': yAixsTitle,
                         'type': 'nominal',
-                        'sort': "-x"
+                        'sort': order
                     },
                     color: {
                         'value': Const.CSS.BAR_CHART_SCHEMA
